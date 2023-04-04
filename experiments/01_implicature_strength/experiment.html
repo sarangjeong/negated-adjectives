@@ -55,19 +55,35 @@
       <h3>
         Example 1
       </h3>
-      <p class="originalSen">
-        I had some of the banana yogurt.
+      <p class="context">
+        Jane goes on a blind date. After the date, Jane calls her best friend and says: 
       </p>
       <p class="targetSen">
-        I had <b>some, but not all</b> of the banana yogurt
+        "My date wasn't handsome."
       </p>
-      <div class="instruction">
-        <i>How similar is the statement in blue (with 'but not all') to the statement in red (without 'but not all')?</i>
+      <div class="q1">
+        <i>What was the appearance of Jane's date?</i>
       </div>
       <p>
-        <i>Strongly Disagree</i> 
+        <i>very ugly</i> 
         <input onclick="_s.q1thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q1"> 
-        <i>Strongly Agree</i>
+        <i>very handsome</i>
+      </p>
+      <div class="q2">
+        <i>What was the appearance Jane wanted her date to have?</i>
+      </div>
+      <p>
+        <i>very ugly</i> 
+        <input onclick="_s.q2thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q2"> 
+        <i>very handsome</i>
+      </p>
+      <div class="q3">
+        <i>What was Jane's intention for saying "My date wasn't handsome"?</i>
+      </div>
+      <p>
+        <i>to be honest</i> 
+        <input onclick="_s.q3thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q3"> 
+        <i>to be positive</i>
       </p>
 
       <br>
@@ -76,7 +92,7 @@
       </div>
       <div class="err">
         <p>
-          In your rating, consider whether the sentence 'some, but not all' expresses the same thing as the red sentence. In this example the two sentences are very similar.
+          In your rating, consider what the sentence "My date wasn't handsome" means. Can it mean that Jane's date was very handsome?
         </p>
       </div>
     </div>

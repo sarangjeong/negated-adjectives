@@ -25,13 +25,25 @@ function make_slides(f) {
         $('#gender_q1').addClass('visibleslider')
       };
     },
-    
+
+    q2thumbVisible : function() {
+      if ($("#gender_q2").val() != 50); {
+        $('#gender_q2').addClass('visibleslider')
+      };
+    },
+
+    q3thumbVisible : function() {
+      if ($("#gender_q3").val() != 50); {
+        $('#gender_q3').addClass('visibleslider')
+      };
+    },
+
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       // read in the value of the selected radio button
-      this.radio = $("input[name='number']:checked").val();
+      this.q1Response = $("#gender_q1").val();
       // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
-      if (this.radio == "5" || this.radio == "6" || this.radio == "7") {
+      if (this.q1Response < "70") {
         // log response
         this.log_responses();
         // continue to next slide
