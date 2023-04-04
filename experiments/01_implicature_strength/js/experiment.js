@@ -20,6 +20,12 @@ function make_slides(f) {
       $('.err').hide();
     },
 
+    q1thumbVisible : function() {
+      if ($("#gender_q1").val() != 50); {
+        $('#gender_q1').addClass('visibleslider')
+      };
+    },
+    
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       // read in the value of the selected radio button

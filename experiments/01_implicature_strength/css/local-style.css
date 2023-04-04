@@ -1,8 +1,31 @@
 .slider {
-  /* default is width 400 and margin 10 */
-	width: 400;
-	margin: 10px;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    border-radius: 5px;
+    width: 50%; /* Full-width */
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 25px;
+height: 25px;
+border-radius: 50%;
+background: #4CAF50;
+cursor: pointer;
+visibility: hidden;
 }
+
+.visibleslider::-webkit-slider-thumb {
+    visibility: visible;
+}
+  
 .hidden {
     display: none; }
 
