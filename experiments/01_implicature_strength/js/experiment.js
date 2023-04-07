@@ -72,32 +72,58 @@ function make_slides(f) {
   slides.example2 = slide({
     name: "example2",
 
+    // this is executed when the slide is shown
     start: function() {
       // hide error message
-      $(".err").hide();
+      $('.err').hide();
     },
 
-    // handle button click
+    q4thumbVisible : function() {
+      if ($("#gender_q4").val() != 50); {
+        $('#gender_q4').addClass('visibleslider')
+      };
+    },
+
+    q5thumbVisible : function() {
+      if ($("#gender_q5").val() != 50); {
+        $('#gender_q5').addClass('visibleslider')
+      };
+    },
+
+    q6thumbVisible : function() {
+      if ($("#gender_q6").val() != 50); {
+        $('#gender_q6').addClass('visibleslider')
+      };
+    },
+
+    // this is executed when the participant clicks the "Continue button"
     button: function() {
-      this.radio = $("input[name='number']:checked").val();
-      if (this.radio == "1" || this.radio == "2" || this.radio == "3") {
+      // read in the value of the selected radio button
+      this.q1Response = $("#gender_q4").val();
+      // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
+      if (this.q1Response > "30") {
+        // log response
         this.log_responses();
+        // continue to next slide
         exp.go();
       } else {
+        // participant gave non-reasonable response --> show error message
         $('.err').show();
         this.log_responses();
       }
     },
 
     log_responses: function() {
+      // add response to exp.data_trials
+      // this data will be submitted at the end of the experiment
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example2",
-        "response": this.radio,
-        "strangeSentence": "",
-        "sentence": "",
+        "responseState": $("#gender_q4").val(),
+        "responseValue": $("#gender_q5").val(),
+        "responseIntention": $("#gender_q6").val(),
       });
-    }
+    },
   });
 
   // set up slide with instructions for main experiment
