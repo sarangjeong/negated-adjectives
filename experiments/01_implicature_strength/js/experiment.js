@@ -141,11 +141,17 @@ function make_slides(f) {
 
     start: function() {
       var stim = {
-        "TGrep": "37224:9",
-        "Context": "Speaker A:  and, and i, you know, i still provide most of the things that  go on around the house.<p>Speaker B: right.<p>Speaker A: so, uh, yeah and for a while i was going to school too, and tha-, it was tough.<p>Speaker B: yeah,  i uh, i think that while it 's a good change for i think women to be able  to fulfill their potential in whatever they feel, you know, their expertise may be .<p>Speaker A: uh-huh.<p>Speaker B: uh-huh.<p>Speaker A: uh, i think sometimes other things suffer and tha-, i think it 's hard to find a balance there.<p>Speaker B: ",
-        "EntireSentence": "but in some ways i think we are expected  to do it all.",
-        "ButNotAllSentence": "but in <strong>some, but not all</strong> ways i think we are expected  to do it all."
-      }    
+        "adjective": "fast-slow",
+        "polarity": "pos",
+        "target": "human",
+        "value": "flip",
+        "negation": "1",
+        "context": "Jane is taking an Uber to the airport. She wants the driver to drive slowly because she gets carsick. Once she's gotten off the Uber, she calls her colleague, who she was texting about her issue during the Uber ride. Jane says: ", 
+        "sentence": "His driving wasn't fast.",
+        "questionState": "What was the speed of the Uber driver?",
+        "questionValue": "What speed did Jane want the Uber driver to have?",
+        "questionIntention": "What was Jane's intention for saying 'His driving wasn't fast'?",
+      }   
     // The 7 lines above from "start:..." to the end of var stim = {...}" define a placeholder stimulus that you will have to delete when
     // loading in the individual stimulus data. 
 
@@ -161,10 +167,6 @@ function make_slides(f) {
       // store stimulus data
       this.stim = stim;
 
-      // extract original and sentence with "but not all"
-      var original_sentence = stim.EntireSentence;
-      var target_sentence = stim.ButNotAllSentence;
-
       //handle display of context 
       // if (exp.condition == "context") {
       //   // extract context data
@@ -179,10 +181,32 @@ function make_slides(f) {
       // }
 
       // replace the placeholder in the HTML document with the relevant sentences for this trial
-      $("#trial-originalSen").html(original_sentence);
-      $("#trial-targetSen").html(target_sentence);
+      var adjectives = stim.adjective.split('-');
+      $("#context").html(stim.context);
+      $("#sentence").html(stim.sentence);
+      $("#q1").html(stim.questionState);
+      $("#q2").html(stim.questionValue);
+      $("#q3").html(stim.questionIntention);
       $(".err").hide();
 
+    },
+
+    q7thumbVisible : function() {
+      if ($("#gender_q7").val() != 50); {
+        $('#gender_q7').addClass('visibleslider')
+      };
+    },
+
+    q8thumbVisible : function() {
+      if ($("#gender_q8").val() != 50); {
+        $('#gender_q8').addClass('visibleslider')
+      };
+    },
+
+    q9thumbVisible : function() {
+      if ($("#gender_q9").val() != 50); {
+        $('#gender_q9').addClass('visibleslider')
+      };
     },
 
     // handle click on "Continue" button

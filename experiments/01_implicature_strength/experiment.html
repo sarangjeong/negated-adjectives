@@ -164,34 +164,34 @@
       <p class="case" style="text-align: left;"></p>
       
       <!-- placeholders for stimuli -->
-      <p class="context">
-        Tom goes on a blind date. After the date, Tom calls his best friend and says: 
+      <p class="context" id="context">
+        {{ context }}
       </p>
-      <p class="sentence">
-        "My date was pretty."
+      <p class="sentence" id="sentence">
+        {{ sentence }}
       </p>
-      <div class="q1">
-        <i>What was the appearance of Tom's date?</i>
+      <div class="q1" id="q1">
+        <i>{{ question 1 }}</i>
       </div>
       <p>
-        <i>very ugly</i> 
-        <input onclick="_s.q4thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q4"> 
-        <i>very pretty</i>
+        <i>very slow</i> 
+        <input onclick="_s.q7thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q7"> 
+        <i>very fast</i>
       </p>
-      <div class="q2">
-        <i>What was the appearance Tom wanted his date to have?</i>
+      <div class="q2" id="q2">
+        <i>{{ question 2}}</i>
       </div>
       <p>
-        <i>very ugly</i> 
-        <input onclick="_s.q5thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q5"> 
-        <i>very pretty</i>
+        <i>very slow</i> 
+        <input onclick="_s.q8thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q8"> 
+        <i>very fast</i>
       </p>
-      <div class="q3">
-        <i>What was Tom's intention for saying "My date was pretty"?</i>
+      <div class="q3" id="q3">
+        <i>{{ question 3}}</i>
       </div>
       <p>
         <i>to be honest</i> 
-        <input onclick="_s.q6thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q6"> 
+        <input onclick="_s.q9thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="gender_q9"> 
         <i>to be positive</i>
       </p>
 
