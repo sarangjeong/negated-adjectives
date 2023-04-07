@@ -61,9 +61,9 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example1",
-        "response": this.radio,
-        "strangeSentence": "",
-        "sentence": "",
+        "responseState": $("#gender_q1").val(),
+        "responseValue": $("#gender_q2").val(),
+        "responseIntention": $("#gender_q3").val(),
       });
     },
   });
