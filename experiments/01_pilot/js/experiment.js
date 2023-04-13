@@ -164,6 +164,16 @@ function make_slides(f) {
       // $("input[name='number']:checked").prop("checked", false);
       // $("#check-strange").prop("checked", false);
 
+      // reset sliders
+      $("input[name='number']:checked").prop("checked", false);
+      
+      // var slider1 = document.getElementById("#q1Slider");
+      // var slider2 = document.getElementById("#q2Slider");
+      // var slider3 = document.getElementById("#q3Slider");
+      // slider1.value = "50";
+      // slider2.value = "50";
+      // slider3.value = "50";
+
       // store stimulus data
       this.stim = stim;
 
@@ -231,7 +241,7 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         // "id": this.stim.TGrep,
-        "responseState": $("#q1Slider").val(),
+        "responseState": $("#q1Slider").val(), // TODO: what is #?
         "responseValue": $("#q2Slider").val(),
         "responseIntention": $("#q3Slider").val(),
       });
