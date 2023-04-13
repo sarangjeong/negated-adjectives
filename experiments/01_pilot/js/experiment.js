@@ -20,30 +20,30 @@ function make_slides(f) {
       $('.err').hide();
     },
 
-    q1thumbVisible : function() {
-      if ($("#q1").val() != 50); {
-        $('#q1').addClass('visibleslider')
+    exampleQ1ThumbVisible : function() {
+      if ($("#exampleQ1").val() != 50); {
+        $('#exampleQ1').addClass('visibleslider')
       };
     },
 
-    q2thumbVisible : function() {
-      if ($("#q2").val() != 50); {
-        $('#q2').addClass('visibleslider')
+    exampleQ2ThumbVisible : function() {
+      if ($("#exampleQ2").val() != 50); {
+        $('#exampleQ2').addClass('visibleslider')
       };
     },
 
-    q3thumbVisible : function() {
-      if ($("#q3").val() != 50); {
-        $('#q3').addClass('visibleslider')
+    exampleQ3ThumbVisible : function() {
+      if ($("#exampleQ3").val() != 50); {
+        $('#exampleQ3').addClass('visibleslider')
       };
     },
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       // read in the value of the selected radio button
-      this.q1Response = $("#q1").val();
+      this.exampleQ1Response = $("#exampleQ1").val();
       // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
-      if (this.q1Response < "70") {
+      if (this.exampleQ1Response < "70") {
         // log response
         this.log_responses();
         // continue to next slide
@@ -61,9 +61,9 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example1",
-        "responseState": $("#q1").val(),
-        "responseValue": $("#q2").val(),
-        "responseIntention": $("#q3").val(),
+        "responseState": $("#exampleQ1").val(),
+        "responseValue": $("#exampleQ2").val(),
+        "responseIntention": $("#exampleQ3").val(),
       });
     },
   });
@@ -78,30 +78,30 @@ function make_slides(f) {
       $('.err').hide();
     },
 
-    q4thumbVisible : function() {
-      if ($("#q4").val() != 50); {
-        $('#q4').addClass('visibleslider')
+    exampleQ4ThumbVisible : function() {
+      if ($("#exampleQ4").val() != 50); {
+        $('#exampleQ4').addClass('visibleslider')
       };
     },
 
-    q5thumbVisible : function() {
-      if ($("#q5").val() != 50); {
-        $('#q5').addClass('visibleslider')
+    exampleQ5ThumbVisible : function() {
+      if ($("#exampleQ5").val() != 50); {
+        $('#exampleQ5').addClass('visibleslider')
       };
     },
 
-    q6thumbVisible : function() {
-      if ($("#q6").val() != 50); {
-        $('#q6').addClass('visibleslider')
+    exampleQ6ThumbVisible : function() {
+      if ($("#exampleQ6").val() != 50); {
+        $('#exampleQ6').addClass('visibleslider')
       };
     },
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       // read in the value of the selected radio button
-      this.q1Response = $("#q4").val();
+      this.exampleQ4Response = $("#exampleQ4").val();
       // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
-      if (this.q1Response > "30") {
+      if (this.exampleQ4Response > "30") {
         // log response
         this.log_responses();
         // continue to next slide
@@ -119,9 +119,9 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example2",
-        "responseState": $("#q4").val(),
-        "responseValue": $("#q5").val(),
-        "responseIntention": $("#q6").val(),
+        "responseState": $("#exampleQ4").val(),
+        "responseValue": $("#exampleQ5").val(),
+        "responseIntention": $("#exampleQ6").val(),
       });
     },
   });
