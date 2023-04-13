@@ -21,27 +21,27 @@ function make_slides(f) {
     },
 
     q1thumbVisible : function() {
-      if ($("#gender_q1").val() != 50); {
-        $('#gender_q1').addClass('visibleslider')
+      if ($("#q1").val() != 50); {
+        $('#q1').addClass('visibleslider')
       };
     },
 
     q2thumbVisible : function() {
-      if ($("#gender_q2").val() != 50); {
-        $('#gender_q2').addClass('visibleslider')
+      if ($("#q2").val() != 50); {
+        $('#q2').addClass('visibleslider')
       };
     },
 
     q3thumbVisible : function() {
-      if ($("#gender_q3").val() != 50); {
-        $('#gender_q3').addClass('visibleslider')
+      if ($("#q3").val() != 50); {
+        $('#q3').addClass('visibleslider')
       };
     },
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       // read in the value of the selected radio button
-      this.q1Response = $("#gender_q1").val();
+      this.q1Response = $("#q1").val();
       // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
       if (this.q1Response < "70") {
         // log response
@@ -61,9 +61,9 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example1",
-        "responseState": $("#gender_q1").val(),
-        "responseValue": $("#gender_q2").val(),
-        "responseIntention": $("#gender_q3").val(),
+        "responseState": $("#q1").val(),
+        "responseValue": $("#q2").val(),
+        "responseIntention": $("#q3").val(),
       });
     },
   });
@@ -79,27 +79,27 @@ function make_slides(f) {
     },
 
     q4thumbVisible : function() {
-      if ($("#gender_q4").val() != 50); {
-        $('#gender_q4').addClass('visibleslider')
+      if ($("#q4").val() != 50); {
+        $('#q4').addClass('visibleslider')
       };
     },
 
     q5thumbVisible : function() {
-      if ($("#gender_q5").val() != 50); {
-        $('#gender_q5').addClass('visibleslider')
+      if ($("#q5").val() != 50); {
+        $('#q5').addClass('visibleslider')
       };
     },
 
     q6thumbVisible : function() {
-      if ($("#gender_q6").val() != 50); {
-        $('#gender_q6').addClass('visibleslider')
+      if ($("#q6").val() != 50); {
+        $('#q6').addClass('visibleslider')
       };
     },
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       // read in the value of the selected radio button
-      this.q1Response = $("#gender_q4").val();
+      this.q1Response = $("#q4").val();
       // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
       if (this.q1Response > "30") {
         // log response
@@ -119,9 +119,9 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example2",
-        "responseState": $("#gender_q4").val(),
-        "responseValue": $("#gender_q5").val(),
-        "responseIntention": $("#gender_q6").val(),
+        "responseState": $("#q4").val(),
+        "responseValue": $("#q5").val(),
+        "responseIntention": $("#q6").val(),
       });
     },
   });
@@ -192,20 +192,20 @@ function make_slides(f) {
     },
 
     q7thumbVisible : function() {
-      if ($("#gender_q7").val() != 50); {
-        $('#gender_q7').addClass('visibleslider')
+      if ($("#q7").val() != 50); {
+        $('#q7').addClass('visibleslider')
       };
     },
 
     q8thumbVisible : function() {
-      if ($("#gender_q8").val() != 50); {
-        $('#gender_q8').addClass('visibleslider')
+      if ($("#q8").val() != 50); {
+        $('#q8').addClass('visibleslider')
       };
     },
 
     q9thumbVisible : function() {
-      if ($("#gender_q9").val() != 50); {
-        $('#gender_q9').addClass('visibleslider')
+      if ($("#q9").val() != 50); {
+        $('#q9').addClass('visibleslider')
       };
     },
 
