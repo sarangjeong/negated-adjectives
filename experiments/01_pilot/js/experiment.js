@@ -211,25 +211,28 @@ function make_slides(f) {
 
     // handle click on "Continue" button
     button: function() {
-      this.radio = $("input[name='number']:checked").val();
-      this.strange = $("#check-strange:checked").val() === undefined ? 0 : 1;
-      if (this.radio) {
+      this.question1Response = $("#q7").val();
+      this.question2Response = $("#q8").val();
+      this.question3Response = $("#q9").val();
+      if (this.question1Response != "50" && this.question2Response != "50" && this.question3Response != "50") {
         this.log_responses();
-        exp.go(); //use exp.go() if and only if there is no "present"ed data, ie no list of stimuli.
-        // _stream.apply(this); //use _stream.apply(this) if there is a list of "present" stimuli to rotate through
+        exp.go();
       } else {
+        // did not answer all the questions
         $('.err').show();
+        this.log_responses();
       }
     },
 
-    // save response
     log_responses: function() {
+      // add response to exp.data_trials
+      // this data will be submitted at the end of the experiment
       exp.data_trials.push({
-        "id": this.stim.TGrep,
-        // "sentence": this.stim.ButNotAllSentence,
-        // "slide_number_in_experiment": exp.phase, //exp.phase is a built-in trial number tracker
-        "response": this.radio,
-        "strangeSentence": this.strange
+        "slide_number_in_experiment": exp.phase,
+        // "id": this.stim.TGrep,
+        "responseState": $("#q7").val(),
+        "responseValue": $("#q8").val(),
+        "responseIntention": $("#q9").val(),
       });
     },
   });
