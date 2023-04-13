@@ -50,7 +50,7 @@ function make_slides(f) {
         exp.go();
       } else {
         // participant gave non-reasonable response --> show error message
-        $('.err').show();
+        $('.err').show(); // TODO: show error when not all questions are answered
         this.log_responses();
       }
     },
@@ -108,7 +108,7 @@ function make_slides(f) {
         exp.go();
       } else {
         // participant gave non-reasonable response --> show error message
-        $('.err').show();
+        $('.err').show(); // TODO: show error when not all questions are answered
         this.log_responses();
       }
     },
@@ -139,30 +139,30 @@ function make_slides(f) {
   slides.trial = slide({
     name: "trial",
 
-    start: function() {
-      var stim = {
-        "adjective": "fast-slow",
-        "polarity": "pos",
-        "target": "human",
-        "value": "flip",
-        "negation": "1",
-        "context": "Jane is taking an Uber to the airport. She wants the driver to drive slowly because she gets carsick. Once she's gotten off the Uber, she calls her colleague, who she was texting about her issue during the Uber ride. Jane says: ", 
-        "sentence": "His driving wasn't fast.",
-        "questionState": "What was the speed of the Uber driver?",
-        "questionValue": "What speed did Jane want the Uber driver to have?",
-        "questionIntention": "What was Jane's intention for saying 'His driving wasn't fast'?",
-      }   
-    // The 7 lines above from "start:..." to the end of var stim = {...}" define a placeholder stimulus that you will have to delete when
+    // start: function() {
+    //   var stim = {
+    //     "adjective": "fast-slow",
+    //     "polarity": "pos",
+    //     "target": "human",
+    //     "value": "flip",
+    //     "negation": "1",
+    //     "context": "Jane is taking an Uber to the airport. She wants the driver to drive slowly because she gets carsick. Once she's gotten off the Uber, she calls her colleague, who she was texting about her issue during the Uber ride. Jane says: ", 
+    //     "sentence": "His driving wasn't fast.",
+    //     "questionState": "What was the speed of the Uber driver?",
+    //     "questionValue": "What speed did Jane want the Uber driver to have?",
+    //     "questionIntention": "What was Jane's intention for saying 'His driving wasn't fast'?",
+    //   }   
+    // The  lines above from "start:..." to the end of var stim = {...}" define a placeholder stimulus that you will have to delete when
     // loading in the individual stimulus data. 
 
-    // To rotate through stimulus list, comment out the above 7 lines and  uncomment the following 2:
-    // present: exp.stimuli,
-    // present_handle : function(stim) {
+    // To rotate through stimulus list, comment out the above lines and  uncomment the following 2:
+    present: exp.stimuli,
+    present_handle : function(stim) {
 
       // unselect all radio buttons at the beginning of each trial
       // (by default, the selection of the radio persists across trials)
-      $("input[name='number']:checked").prop("checked", false);
-      $("#check-strange").prop("checked", false);
+      // $("input[name='number']:checked").prop("checked", false);
+      // $("#check-strange").prop("checked", false);
 
       // store stimulus data
       this.stim = stim;
@@ -216,7 +216,8 @@ function make_slides(f) {
       this.q3Response = $("#q3Slider").val();
       if (this.q1Response != "50" && this.q2Response != "50" && this.q3Response != "50") {
         this.log_responses();
-        exp.go();
+        // exp.go();
+        _stream.apply(this);
       } else {
         // did not answer all the questions
         $('.err').show();
