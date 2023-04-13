@@ -184,37 +184,37 @@ function make_slides(f) {
       var adjectives = stim.adjective.split('-');
       $("#context").html(stim.context);
       $("#sentence").html(stim.sentence);
-      $("#question1").html(stim.questionState);
-      $("#question2").html(stim.questionValue);
-      $("#question3").html(stim.questionIntention);
+      $("#q1").html(stim.questionState);
+      $("#q2").html(stim.questionValue);
+      $("#q3").html(stim.questionIntention);
       $(".err").hide();
 
     },
 
-    q7thumbVisible : function() {
-      if ($("#q7").val() != 50); {
-        $('#q7').addClass('visibleslider')
+    q1ThumbVisible : function() {
+      if ($("#q1Slider").val() != 50); {
+        $('#q1Slider').addClass('visibleslider')
       };
     },
 
-    q8thumbVisible : function() {
-      if ($("#q8").val() != 50); {
-        $('#q8').addClass('visibleslider')
+    q2ThumbVisible : function() {
+      if ($("#q2Slider").val() != 50); {
+        $('#q2Slider').addClass('visibleslider')
       };
     },
 
-    q9thumbVisible : function() {
-      if ($("#q9").val() != 50); {
-        $('#q9').addClass('visibleslider')
+    q3ThumbVisible : function() {
+      if ($("#q3Slider").val() != 50); {
+        $('#q3Slider').addClass('visibleslider')
       };
     },
 
     // handle click on "Continue" button
     button: function() {
-      this.question1Response = $("#q7").val();
-      this.question2Response = $("#q8").val();
-      this.question3Response = $("#q9").val();
-      if (this.question1Response != "50" && this.question2Response != "50" && this.question3Response != "50") {
+      this.q1Response = $("#q1Slider").val();
+      this.q2Response = $("#q2Slider").val();
+      this.q3Response = $("#q3Slider").val();
+      if (this.q1Response != "50" && this.q2Response != "50" && this.q3Response != "50") {
         this.log_responses();
         exp.go();
       } else {
@@ -230,9 +230,9 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         // "id": this.stim.TGrep,
-        "responseState": $("#q7").val(),
-        "responseValue": $("#q8").val(),
-        "responseIntention": $("#q9").val(),
+        "responseState": $("#q1Slider").val(),
+        "responseValue": $("#q2Slider").val(),
+        "responseIntention": $("#q3Slider").val(),
       });
     },
   });
