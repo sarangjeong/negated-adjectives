@@ -184,9 +184,9 @@ function make_slides(f) {
       var adjectives = stim.adjective.split('-');
       $("#context").html(stim.context);
       $("#sentence").html(stim.sentence);
-      $("#q1").html(stim.questionState);
-      $("#q2").html(stim.questionValue);
-      $("#q3").html(stim.questionIntention);
+      $("#question1").html(stim.questionState);
+      $("#question2").html(stim.questionValue);
+      $("#question3").html(stim.questionIntention);
       $(".err").hide();
 
     },

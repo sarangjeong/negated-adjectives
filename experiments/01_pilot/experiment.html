@@ -159,10 +159,7 @@
 
     <!-- trial slide -->
     <div class="slide" id="trial">
-
-      <!-- placeholders for contexts -->
-      <p class="case" style="text-align: left;"></p>
-      
+     
       <!-- placeholders for stimuli -->
       <p class="context" id="context">
         {{ context }}
@@ -170,15 +167,15 @@
       <p class="sentence" id="sentence">
         {{ sentence }}
       </p>
-      <div class="q1" id="q1">
+      <p class="question1" id="question1">
         <i>{{ question 1 }}</i>
-      </div>
+      </p>
       <p>
         <i>very slow</i> 
         <input onclick="_s.q7thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="q7"> 
         <i>very fast</i>
       </p>
-      <div class="q2" id="q2">
+      <div class="question2" id="question2">
         <i>{{ question 2}}</i>
       </div>
       <p>
@@ -186,7 +183,7 @@
         <input onclick="_s.q8thumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="q8"> 
         <i>very fast</i>
       </p>
-      <div class="q3" id="q3">
+      <div class="question3" id="question3">
         <i>{{ question 3}}</i>
       </div>
       <p>
