@@ -186,7 +186,7 @@ function make_slides(f) {
       $("#sentence").html(stim.sentence);
       $("#q1").html(stim.questionState);
       $("#q2").html(stim.questionValue);
-      $("#q3").html(stim.questionIntention);
+      $("#q3").html(stim.questionHonest); // TODO: I need to have 4 questions (intention -> honest, positive)
       $(".err").hide();
 
     },
