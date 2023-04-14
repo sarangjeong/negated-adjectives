@@ -2,6 +2,25 @@
 
 // TODO: iterate names?
 
+var adjectives = ["good", "bad", "fast", "slow", "big", "small", "long", "short"];
+
+var targets = ["human", "thing"];
+var values = ["normal", "flipped"];
+var negations = ["1", "0"];
+
+var conditions = [];
+
+for (let i = 0; i < targets.length; i++) {
+  for (let j = 0; j < values.length; j++) {
+    for (let k = 0; k < negations.length; k++) {
+      conditions.push([targets[i], values[j], negations[k]])
+    }
+  }
+}
+
+adjectives = _.shuffle(adjectives)
+conditions = _.shuffle(conditions)
+
 var all_stims =
   [
   // 1. fast
@@ -917,6 +936,29 @@ var all_stims =
     "questionPositive": "How important was it for Jane to be positive?"
   }
 ]
+
+function findStimIndex(adjective, target, value, negation) {
+  for (let i = 0; i < all_stims.length; i++) {
+    if (all_stims[i].adjective == adjective
+      && all_stims[i].target == target
+      && all_stims[i].value == value
+      && all_stims[i].negation == negation) {
+        return i
+      }
+  }
+  console.error("no such stim :(")
+}
+
+function makeStimList() {
+  var stims = [];
+  for (let index = 0; index < adjectives.length; index++) { // this assumes lengths of lists are identical
+    var adjective = adjectives[index]
+    var [target, value, negation] = conditions[index]; // unpacking 
+    var stim = all_stims[findStimIndex(adjective, target, value, negation)];
+    stims.push(stim)
+  }
+  return stims
+}
 
 // var all_contexts =
 //   [{
