@@ -170,9 +170,12 @@ function make_slides(f) {
       // var slider1 = document.getElementById("#q1Slider");
       // var slider2 = document.getElementById("#q2Slider");
       // var slider3 = document.getElementById("#q3Slider");
-      // slider1.value = "50";
-      // slider2.value = "50";
-      // slider3.value = "50";
+      document.getElementById("q1Slider").value = "50";
+      document.getElementById("q2Slider").value = "50";
+      document.getElementById("q3Slider").value = "50";
+      $('#q1Slider').removeClass('visibleslider')
+      $('#q2Slider').removeClass('visibleslider')
+      $('#q3Slider').removeClass('visibleslider')
 
       // store stimulus data
       this.stim = stim;
@@ -220,7 +223,7 @@ function make_slides(f) {
     },
 
     // handle click on "Continue" button
-    button: function() {
+    button: function() {      
       let q1Status = document.getElementById('q1Slider');
       let q2Status = document.getElementById('q2Slider');
       let q3Status = document.getElementById('q3Slider');
