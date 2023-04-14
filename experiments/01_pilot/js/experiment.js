@@ -167,9 +167,6 @@ function make_slides(f) {
       // reset sliders
       $("input[name='number']:checked").prop("checked", false);
       
-      // var slider1 = document.getElementById("#q1Slider");
-      // var slider2 = document.getElementById("#q2Slider");
-      // var slider3 = document.getElementById("#q3Slider");
       document.getElementById("q1Slider").value = "50";
       document.getElementById("q2Slider").value = "50";
       document.getElementById("q3Slider").value = "50";
