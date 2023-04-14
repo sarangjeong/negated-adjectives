@@ -221,17 +221,17 @@ function make_slides(f) {
 
     // handle click on "Continue" button
     button: function() {
-      this.q1Response = $("#q1Slider").val();
-      this.q2Response = $("#q2Slider").val();
-      this.q3Response = $("#q3Slider").val();
-      if (this.q1Response != "50" && this.q2Response != "50" && this.q3Response != "50") {
-        this.log_responses();
-        // exp.go();
-        _stream.apply(this);
-      } else {
+      let q1Status = document.getElementById('q1Slider');
+      let q2Status = document.getElementById('q2Slider');
+      let q3Status = document.getElementById('q3Slider');
         // did not answer all the questions
+        if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider') {
         $('.err').show();
         this.log_responses();
+        // exp.go();
+      } else {
+        this.log_responses(); // this (logging) must come before _stream (reset)
+        _stream.apply(this);
       }
     },
 
