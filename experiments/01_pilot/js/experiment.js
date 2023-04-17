@@ -170,9 +170,11 @@ function make_slides(f) {
       document.getElementById("q1Slider").value = "50";
       document.getElementById("q2Slider").value = "50";
       document.getElementById("q3Slider").value = "50";
+      document.getElementById("q4Slider").value = "50";
       $('#q1Slider').removeClass('visibleslider')
       $('#q2Slider').removeClass('visibleslider')
       $('#q3Slider').removeClass('visibleslider')
+      $('#q4Slider').removeClass('visibleslider')
 
       // store stimulus data
       this.stim = stim;
@@ -203,18 +205,24 @@ function make_slides(f) {
       $("#q1").html(stim.questionState);
       $("#q2").html(stim.questionValue);
       $("#q3").html(stim.questionHonest); // TODO: I need to have 4 questions (intention -> honest, positive)
+      $("#q4").html(stim.questionPositive);
       $(".err").hide();
       // hide questions
       $("#q1").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)
       $("#q1Slider").hide();
       $("#q3").hide();
       $("#q3Slider").hide();
+      $("#q4").hide();
+      $("#q4Slider").hide();
       $("#endpoint1-1").hide();
       $("#endpoint1-2").hide();
       $("#endpoint3-1").hide();
       $("#endpoint3-2").hide();
+      $("#endpoint4-1").hide();
+      $("#endpoint4-2").hide();
       $("#context2").hide();
       $("#sentence").hide();
+      $("#intention").hide();
     },
 
     // show questions sequentially
@@ -223,10 +231,15 @@ function make_slides(f) {
     q1ThumbVisible : function() {
       if ($("#q1Slider").val() != 50); {
         $('#q1Slider').addClass('visibleslider')
+        $("#intention").show();
         $("#q3").show();
         $("#q3Slider").show();  
         $("#endpoint3-1").show();
         $("#endpoint3-2").show();
+        $("#q4").show();
+        $("#q4Slider").show();  
+        $("#endpoint4-1").show();
+        $("#endpoint4-2").show();
       };
     },
 
@@ -248,13 +261,20 @@ function make_slides(f) {
       };
     },
 
+    q4ThumbVisible : function() {
+      if ($("#q4Slider").val() != 50); {
+        $('#q4Slider').addClass('visibleslider')
+      };
+    },
+
     // handle click on "Continue" button
     button: function() {      
       let q1Status = document.getElementById('q1Slider');
       let q2Status = document.getElementById('q2Slider');
       let q3Status = document.getElementById('q3Slider');
+      let q4Status = document.getElementById('q4Slider');
         // did not answer all the questions
-        if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider') {
+        if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider' || q4Status.className != 'slider visibleslider') {
         $('.err').show();
         this.log_responses();
         // exp.go();
@@ -272,7 +292,8 @@ function make_slides(f) {
         // "id": this.stim.TGrep,
         "responseState": $("#q1Slider").val(), // TODO: what is #?
         "responseValue": $("#q2Slider").val(),
-        "responseIntention": $("#q3Slider").val(),
+        "responseHonest": $("#q3Slider").val(),
+        "responsePositive": $("#q4Slider").val(),
       });
     },
   });

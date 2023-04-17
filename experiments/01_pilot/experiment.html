@@ -191,13 +191,25 @@
         <i> <span class="endpoint" id="endpoint1-2"> very <span class="adjPos" id="adjPos1"> {{positive adjective}} </span> </span> </i>
       </p>
 
+      <!-- TODO: what is class? -->
+      <p class="intetion" id="intention"> Think about (TODO: placeholder for name)'s intetion in saying (TODO: placeholder for target sentence).</p>
+
       <div class="q3" id="q3">
-        <i>{{ question 3}}</i>
+        <i>{{ question 3 }}</i>
       </div>
       <p>
-        <i> <span class="endpoint" id="endpoint3-1"> to be honest </span> </i>
+        <i> <span class="endpoint" id="endpoint3-1"> not important at all </span> </i>
         <input onclick="_s.q3ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="q3Slider"> 
-        <i> <span class="endpoint" id="endpoint3-2"> to be positive </span> </i>
+        <i> <span class="endpoint" id="endpoint3-2"> very important </span> </i>
+      </p>
+
+      <div class="q4" id="q4">
+        <i>{{ question 4 }}</i>
+      </div>
+      <p>
+        <i> <span class="endpoint" id="endpoint4-1"> not important at all </span> </i>
+        <input onclick="_s.q4ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="q4Slider"> 
+        <i> <span class="endpoint" id="endpoint4-2"> very important </span> </i>
       </p>
 
       <br>
