@@ -17,7 +17,8 @@ function make_slides(f) {
     // this is executed when the slide is shown
     start: function() {
       // hide error message
-      $('.err').hide();
+      $('.err').hide(); // TODO: . = class?
+      $('.attention').hide();
     },
 
     exampleQ1ThumbVisible : function() {
@@ -40,18 +41,28 @@ function make_slides(f) {
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
+      let q1Status = document.getElementById('exampleQ1');
+      let q2Status = document.getElementById('exampleQ2');
+      let q3Status = document.getElementById('exampleQ3');
+      // let q4Status = document.getElementById('exampleQ4'); // TODO: uncomment after adding q4 (questionPositive)
+
       // read in the value of the selected radio button
       this.exampleQ1Response = $("#exampleQ1").val();
-      // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
-      if (this.exampleQ1Response < "70") {
+      // check whether the participant responded to every question
+      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider') { // || q4Status.className != 'slider visibleslider' // TODO: add after adding q4
+        $('.err').show();
+        this.log_responses();
+      // check whether the participant selected a reasonable value 
+    } else if (this.exampleQ1Response > "70") {
+        // participant gave non-reasonable response --> show error message
+        $('.err').hide();
+        $('.attention').show(); 
+        this.log_responses();
+      } else {
         // log response
         this.log_responses();
         // continue to next slide
         exp.go();
-      } else {
-        // participant gave non-reasonable response --> show error message
-        $('.err').show(); // TODO: show error when not all questions are answered
-        this.log_responses();
       }
     },
 
@@ -63,7 +74,7 @@ function make_slides(f) {
         "id": "example1",
         "responseState": $("#exampleQ1").val(),
         "responseValue": $("#exampleQ2").val(),
-        "responseIntention": $("#exampleQ3").val(),
+        "responseIntention": $("#exampleQ3").val(), // TODO: change to questionHonest, add questionPositive
       });
     },
   });
@@ -76,6 +87,7 @@ function make_slides(f) {
     start: function() {
       // hide error message
       $('.err').hide();
+      $('.attention').hide();
     },
 
     exampleQ4ThumbVisible : function() {
@@ -98,18 +110,28 @@ function make_slides(f) {
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
+      let q1Status = document.getElementById('exampleQ4'); // TODO: renumber (Q5-Q8) or refactor
+      let q2Status = document.getElementById('exampleQ5');
+      let q3Status = document.getElementById('exampleQ6');
+      // let q4Status = document.getElementById('exampleQ8'); // TODO: uncomment after adding q4 (questionPositive)
+
       // read in the value of the selected radio button
-      this.exampleQ4Response = $("#exampleQ4").val();
-      // check whether the participant selected a reasonable value (i.e, 5, 6, or 7)
-      if (this.exampleQ4Response > "30") {
+      this.exampleQ4Response = $("#exampleQ4").val(); // TODO: change to Q5 or refactor
+      // check whether the participant responded to every question
+      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider') { // || q4Status.className != 'slider visibleslider' // TODO: add after adding q4
+        $('.err').show();
+        this.log_responses();
+      // check whether the participant selected a reasonable value 
+    } else if (this.exampleQ4Response < "30") {
+        // participant gave non-reasonable response --> show error message
+        $('.err').hide();
+        $('.attention').show(); 
+        this.log_responses();
+    } else {
         // log response
         this.log_responses();
         // continue to next slide
         exp.go();
-      } else {
-        // participant gave non-reasonable response --> show error message
-        $('.err').show(); // TODO: show error when not all questions are answered
-        this.log_responses();
       }
     },
 
@@ -121,7 +143,7 @@ function make_slides(f) {
         "id": "example2",
         "responseState": $("#exampleQ4").val(),
         "responseValue": $("#exampleQ5").val(),
-        "responseIntention": $("#exampleQ6").val(),
+        "responseIntention": $("#exampleQ6").val(), // TODO: change to questionHonest, add questionPositive
       });
     },
   });
