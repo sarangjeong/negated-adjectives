@@ -209,6 +209,10 @@ function make_slides(f) {
       $("#q1Slider").hide();
       $("#q3").hide();
       $("#q3Slider").hide();
+      $("#endpoint1-1").hide();
+      $("#endpoint1-2").hide();
+      $("#endpoint3-1").hide();
+      $("#endpoint3-2").hide();
       $("#context2").hide();
       $("#sentence").hide();
     },
@@ -221,8 +225,8 @@ function make_slides(f) {
         $('#q1Slider').addClass('visibleslider')
         $("#q3").show();
         $("#q3Slider").show();  
-        $("#endpoint2-1").show();
-        $("#endpoint2-2").show();
+        $("#endpoint3-1").show();
+        $("#endpoint3-2").show();
       };
     },
 
@@ -231,6 +235,8 @@ function make_slides(f) {
         $('#q2Slider').addClass('visibleslider')
         $("#q1").show();
         $("#q1Slider").show();
+        $("#endpoint1-1").show();
+        $("#endpoint1-2").show();
         $("#context2").show();
         $("#sentence").show();
       };
