@@ -171,17 +171,17 @@
         <i>{{ question 1 }}</i>
       </p>
       <p>
-        <i>very slow</i> 
+        <i>very <span class="adjNeg" id="adjNeg1"> {{negative adjective}} </span> </i> 
         <input onclick="_s.q1ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="q1Slider"> 
-        <i>very fast</i>
+        <i>very <span class="adjPos" id="adjPos1"> {{positive adjective}} </span></i>
       </p>
       <div class="q2" id="q2">
         <i>{{ question 2}}</i>
       </div>
-      <p>
-        <i>very slow</i> 
+      <p class="endpoint" id="endpoint2-1">
+        <i> <span class="endpoint" id="endpoint2-1"> very <span class="adjNeg" id="adjNeg2"> {{negative adjective}} </span> </span> </i>
         <input onclick="_s.q2ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="q2Slider"> 
-        <i>very fast</i>
+        <i>very <span class="adjPos" id="adjPos2"> {{positive adjective}} </span></i>
       </p>
       <div class="q3" id="q3">
         <i>{{ question 3}}</i>

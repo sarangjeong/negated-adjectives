@@ -191,9 +191,14 @@ function make_slides(f) {
       // }
 
       // replace the placeholder in the HTML document with the relevant sentences for this trial
-      var adjectives = stim.adjective.split('-');
+      var adjectives = stim.adjectivePair.split('-');
+      console.log(adjectives)
       $("#context").html(stim.context);
       $("#sentence").html(stim.sentence);
+      $("#adjPos1").html(adjectives[0]);
+      $("#adjNeg1").html(adjectives[1]); 
+      $("#adjPos2").html(adjectives[0]);
+      $("#adjNeg2").html(adjectives[1]); 
       $("#q1").html(stim.questionState);
       $("#q2").html(stim.questionValue);
       $("#q3").html(stim.questionHonest); // TODO: I need to have 4 questions (intention -> honest, positive)
