@@ -37,8 +37,8 @@ var all_stims =
     "sentence": "His driving wasn't fast.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 2. fast - human - flip - neg X
@@ -52,8 +52,8 @@ var all_stims =
     "sentence": "His driving was fast.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 3. fast - human - normal - neg O
@@ -67,8 +67,8 @@ var all_stims =
     "sentence": "His driving wasn't fast.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 4. fast - human - normal - neg X
@@ -82,8 +82,8 @@ var all_stims =
     "sentence": "His driving was fast.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 5. fast - thing - flip - neg O
@@ -97,8 +97,8 @@ var all_stims =
     "sentence": "The zebra wasn't fast.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 6. fast - thing - flip - neg X
@@ -112,8 +112,8 @@ var all_stims =
     "sentence": "The zebra was fast.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 7. fast - thing - normal - neg O
@@ -127,8 +127,8 @@ var all_stims =
     "sentence": "The zebra wasn't fast.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "fast", // 8. fast - thing - normal - neg X
@@ -142,8 +142,8 @@ var all_stims =
     "sentence": "The zebra was fast.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 2. slow
@@ -159,8 +159,8 @@ var all_stims =
     "sentence": "His driving wasn't slow.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 2. slow - human - flip - neg X
@@ -174,8 +174,8 @@ var all_stims =
     "sentence": "His driving was slow.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 3. slow - human - normal - neg O
@@ -189,8 +189,8 @@ var all_stims =
     "sentence": "His driving wasn't slow.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 4. slow - human - normal - neg X
@@ -204,8 +204,8 @@ var all_stims =
     "sentence": "His driving was slow.",
     "questionState": "What was the speed of the Uber driver?",
     "questionValue": "What speed did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 5. slow - thing - flip - neg O
@@ -219,8 +219,8 @@ var all_stims =
     "sentence": "The zebra wasn't slow.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 6. slow - thing - flip - neg X
@@ -234,8 +234,8 @@ var all_stims =
     "sentence": "The zebra was slow.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 7. slow - thing - normal - neg O
@@ -249,8 +249,8 @@ var all_stims =
     "sentence": "The zebra wasn't slow.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "slow", // 8. slow - thing - normal - neg X
@@ -264,8 +264,8 @@ var all_stims =
     "sentence": "The zebra was slow.",
     "questionState": "What was the speed of the zebra?",
     "questionValue": "What speed did Jane want the zebra to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 3. good
@@ -281,8 +281,8 @@ var all_stims =
     "sentence": "He wasn't good.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 2. good - human - flip - neg X
@@ -296,8 +296,8 @@ var all_stims =
     "sentence": "He was good.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 3. good - human - normal - neg O
@@ -311,8 +311,8 @@ var all_stims =
     "sentence": "He wasn't good.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 4. good - human - normal - neg X
@@ -326,8 +326,8 @@ var all_stims =
     "sentence": "He was good.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 5. good - thing - flip - neg O
@@ -341,8 +341,8 @@ var all_stims =
     "sentence": "it wasn't good.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 6. good - thing - flip - neg X
@@ -356,8 +356,8 @@ var all_stims =
     "sentence": "it was good.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 7. good - thing - normal - neg O
@@ -371,8 +371,8 @@ var all_stims =
     "sentence": "it wasn't good.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "good", // 8. good - thing - normal - neg X
@@ -386,8 +386,8 @@ var all_stims =
     "sentence": "it was good.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 4. bad
@@ -398,13 +398,13 @@ var all_stims =
     "target": "human", 
     "value": "flipped", 
     "negation": "1", 
-    "context1": "Jane is taking an Uber to the airport. She wants the driver to drive badly because she gets carsick. Once she's made it to the gate, she calls her colleague, who she was texting about her issue during the Uber ride. Jane says: ", 
+    "context1": "bad human flipped context1", 
     "context2": "context2",
     "sentence": "He wasn't bad.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 2. bad - human - flip - neg X
@@ -418,8 +418,8 @@ var all_stims =
     "sentence": "He was bad.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 3. bad - human - normal - neg O
@@ -433,8 +433,8 @@ var all_stims =
     "sentence": "He wasn't bad.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 4. bad - human - normal - neg X
@@ -448,8 +448,8 @@ var all_stims =
     "sentence": "He was bad.",
     "questionState": "What was the quality of the Uber driver?",
     "questionValue": "What quality did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 5. bad - thing - flip - neg O
@@ -463,8 +463,8 @@ var all_stims =
     "sentence": "it wasn't bad.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 6. bad - thing - flip - neg X
@@ -478,8 +478,8 @@ var all_stims =
     "sentence": "it was bad.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 7. bad - thing - normal - neg O
@@ -493,8 +493,8 @@ var all_stims =
     "sentence": "it wasn't bad.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "bad", // 8. bad - thing - normal - neg X
@@ -508,8 +508,8 @@ var all_stims =
     "sentence": "it was bad.",
     "questionState": "What was the quality of it?",
     "questionValue": "What quality did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 5. long
@@ -525,8 +525,8 @@ var all_stims =
     "sentence": "He wasn't long.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 2. long - human - flip - neg X
@@ -540,8 +540,8 @@ var all_stims =
     "sentence": "He was long.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 3. long - human - normal - neg O
@@ -555,8 +555,8 @@ var all_stims =
     "sentence": "He wasn't long.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 4. long - human - normal - neg X
@@ -570,8 +570,8 @@ var all_stims =
     "sentence": "He was long.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 5. long - thing - flip - neg O
@@ -585,8 +585,8 @@ var all_stims =
     "sentence": "it wasn't long.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 6. long - thing - flip - neg X
@@ -600,8 +600,8 @@ var all_stims =
     "sentence": "it was long.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 7. long - thing - normal - neg O
@@ -615,8 +615,8 @@ var all_stims =
     "sentence": "it wasn't long.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "long", // 8. long - thing - normal - neg X
@@ -630,8 +630,8 @@ var all_stims =
     "sentence": "it was long.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 6. short
@@ -647,8 +647,8 @@ var all_stims =
     "sentence": "He wasn't short.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 2. short - human - flip - neg X
@@ -662,8 +662,8 @@ var all_stims =
     "sentence": "He was short.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 3. short - human - normal - neg O
@@ -677,8 +677,8 @@ var all_stims =
     "sentence": "He wasn't short.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 4. short - human - normal - neg X
@@ -692,8 +692,8 @@ var all_stims =
     "sentence": "He was short.",
     "questionState": "What was the length of the Uber driver?",
     "questionValue": "What length did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 5. short - thing - flip - neg O
@@ -707,8 +707,8 @@ var all_stims =
     "sentence": "it wasn't short.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 6. short - thing - flip - neg X
@@ -722,8 +722,8 @@ var all_stims =
     "sentence": "it was short.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 7. short - thing - normal - neg O
@@ -737,8 +737,8 @@ var all_stims =
     "sentence": "it wasn't short.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "short", // 8. short - thing - normal - neg X
@@ -752,8 +752,8 @@ var all_stims =
     "sentence": "it was short.",
     "questionState": "What was the length of it?",
     "questionValue": "What length did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 7. big
@@ -769,8 +769,8 @@ var all_stims =
     "sentence": "He wasn't big.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 2. big - human - flip - neg X
@@ -784,8 +784,8 @@ var all_stims =
     "sentence": "He was big.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 3. big - human - normal - neg O
@@ -799,8 +799,8 @@ var all_stims =
     "sentence": "He wasn't big.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 4. big - human - normal - neg X
@@ -814,8 +814,8 @@ var all_stims =
     "sentence": "He was big.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 5. big - thing - flip - neg O
@@ -829,8 +829,8 @@ var all_stims =
     "sentence": "it wasn't big.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 6. big - thing - flip - neg X
@@ -844,8 +844,8 @@ var all_stims =
     "sentence": "it was big.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 7. big - thing - normal - neg O
@@ -859,8 +859,8 @@ var all_stims =
     "sentence": "it wasn't big.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "big", // 8. big - thing - normal - neg X
@@ -874,8 +874,8 @@ var all_stims =
     "sentence": "it was big.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
 
   // 8. small
@@ -891,8 +891,8 @@ var all_stims =
     "sentence": "He wasn't small.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 2. small - human - flip - neg X
@@ -906,8 +906,8 @@ var all_stims =
     "sentence": "He was small.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 3. small - human - normal - neg O
@@ -921,8 +921,8 @@ var all_stims =
     "sentence": "He wasn't small.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 4. small - human - normal - neg X
@@ -936,8 +936,8 @@ var all_stims =
     "sentence": "He was small.",
     "questionState": "What was the size of the Uber driver?",
     "questionValue": "What size did Jane want the Uber driver to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 5. small - thing - flip - neg O
@@ -951,8 +951,8 @@ var all_stims =
     "sentence": "it wasn't small.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 6. small - thing - flip - neg X
@@ -966,8 +966,8 @@ var all_stims =
     "sentence": "it was small.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 7. small - thing - normal - neg O
@@ -981,8 +981,8 @@ var all_stims =
     "sentence": "it wasn't small.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   },
   {
     "adjective": "small", // 8. small - thing - normal - neg X
@@ -996,8 +996,8 @@ var all_stims =
     "sentence": "it was small.",
     "questionState": "What was the size of it?",
     "questionValue": "What size did Jane want it to have?",
-    "questionHonest": "How important was it for Jane to be honest?",
-    "questionPositive": "How important was it for Jane to be positive?"
+    "questionHonest": "How important was it to Jane to be honest?",
+    "questionPositive": "How important was it to Jane to be positive?"
   }
 ]
 
