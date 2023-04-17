@@ -193,7 +193,8 @@ function make_slides(f) {
       // replace the placeholder in the HTML document with the relevant sentences for this trial
       var adjectives = stim.adjectivePair.split('-');
       console.log(adjectives)
-      $("#context").html(stim.context);
+      $("#context1").html(stim.context1);
+      $("#context2").html(stim.context2);
       $("#sentence").html(stim.sentence);
       $("#adjPos1").html(adjectives[0]);
       $("#adjNeg1").html(adjectives[1]); 
@@ -204,12 +205,12 @@ function make_slides(f) {
       $("#q3").html(stim.questionHonest); // TODO: I need to have 4 questions (intention -> honest, positive)
       $(".err").hide();
       // hide questions
-      $("#q2").hide();
-      $("#q2Slider").hide();
+      $("#q1").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)
+      $("#q1Slider").hide();
       $("#q3").hide();
       $("#q3Slider").hide();
-      $("#endpoint2-1").hide();
-      $("#endpoint2-2").hide();
+      $("#context2").hide();
+      $("#sentence").hide();
     },
 
     // show questions sequentially
@@ -218,8 +219,8 @@ function make_slides(f) {
     q1ThumbVisible : function() {
       if ($("#q1Slider").val() != 50); {
         $('#q1Slider').addClass('visibleslider')
-        $("#q2").show();
-        $("#q2Slider").show();
+        $("#q3").show();
+        $("#q3Slider").show();  
         $("#endpoint2-1").show();
         $("#endpoint2-2").show();
       };
@@ -228,8 +229,10 @@ function make_slides(f) {
     q2ThumbVisible : function() {
       if ($("#q2Slider").val() != 50); {
         $('#q2Slider').addClass('visibleslider')
-        $("#q3").show();
-        $("#q3Slider").show();  
+        $("#q1").show();
+        $("#q1Slider").show();
+        $("#context2").show();
+        $("#sentence").show();
       };
     },
 
