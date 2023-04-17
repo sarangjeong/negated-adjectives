@@ -203,18 +203,33 @@ function make_slides(f) {
       $("#q2").html(stim.questionValue);
       $("#q3").html(stim.questionHonest); // TODO: I need to have 4 questions (intention -> honest, positive)
       $(".err").hide();
-
+      // hide questions
+      $("#q2").hide();
+      $("#q2Slider").hide();
+      $("#q3").hide();
+      $("#q3Slider").hide();
+      $("#endpoint2-1").hide();
+      $("#endpoint2-2").hide();
     },
+
+    // show questions sequentially
+    
 
     q1ThumbVisible : function() {
       if ($("#q1Slider").val() != 50); {
         $('#q1Slider').addClass('visibleslider')
+        $("#q2").show();
+        $("#q2Slider").show();
+        $("#endpoint2-1").show();
+        $("#endpoint2-2").show();
       };
     },
 
     q2ThumbVisible : function() {
       if ($("#q2Slider").val() != 50); {
         $('#q2Slider').addClass('visibleslider')
+        $("#q3").show();
+        $("#q3Slider").show();  
       };
     },
 
