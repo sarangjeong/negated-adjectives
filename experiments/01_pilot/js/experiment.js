@@ -310,7 +310,7 @@ function init() {
 
   exp.trials = [];
   exp.catch_trials = [];
-  var stimuli = all_stims;
+  var stimuli = makeStimList();
 
   exp.stimuli = stimuli; //call _.shuffle(stimuli) to randomize the order;
   exp.n_trials = exp.stimuli.length;
