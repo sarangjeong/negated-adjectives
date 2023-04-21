@@ -22,7 +22,7 @@ function makeStimList() {
     for (let index = 0; index < adjectives.length; index++) { // this assumes length of adjectives & length of conditions are identical
       var adjective = adjectives[index]
       var [target_type, value, negation] = conditions[index]; // unpacking 
-      var stim = Stim(adjective, target_type, value, negation).toDict() 
+      var stim = new Stim(adjective, target_type, value, negation).toDict() 
       stims.push(stim)
     }
     return stims
