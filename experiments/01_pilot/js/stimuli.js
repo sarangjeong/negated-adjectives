@@ -158,6 +158,8 @@ class Stim {
     }
 
     setValueContext(adjective_pair, target_type, value) {
+        let nominative, accusative, possessive
+        [nominative, accusative, possessive] = this.getPronouns(this.gender)
         // DRIVER
         if (target_type == "human" && adjective_pair == "fast-slow" && value == "normal") {
             this.value_context = `fast because ${nominative} is late for a flight. `
