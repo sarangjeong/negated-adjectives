@@ -94,15 +94,110 @@ class Stim {
         }
     }
 
+    getPronouns(gender) {
+        if (gender == "F") {
+            return ["she", "her", "her"]
+        } else if (gender == "M") {
+            return ["he", "him", "his"]
+        }
+    }
+    
     setAttributeDependentOnAdjectivePairAndTargetType(adjective_pair, target_type) {
         let nominative, accusative, possessive
         [nominative, accusative, possessive] = this.getPronouns(this.gender)
-        // TODO : write all if-conditions
+        // TODO: the third party's name & gender?
+        // DRIVER
         if (adjective_pair == 'fast-slow' && target_type == 'human') {
-            this.subject = 'His driving'
             this.target = 'driver'
+            this.subject = 'His driving'
             this.common_context = `${this.name} is taking an Uber to the airport. ${capitalize(nominative)} wants the driver to drive `
-            this.context2 = `Once ${nominative}'s made it to the gate, ${nominative} calls ${possessive} colleague, who ${nominative} was texting about ${possessive} issue during the Uber ride. ${this.name} says:`
+            this.context2 = `Once ${nominative}'s made it to the gate, ${nominative} calls ${possessive} colleague, who ${nominative} was texting about ${possessive} issue during the Uber ride. ${this.name} says: `
+        // ZEBRA
+        } else if (adjective_pair == 'fast-slow' && target_type == 'thing') {
+            this.target = 'zebra'
+            this.subject = 'The '+ this.target
+            this.common_context = `${this.name} is watching a zebra on a safari. ${capitalize(nominative)} wants the zebra to `
+            this.context2 = `After the safari, ${nominative} calls ${possessive} colleague, who ${nominative} told about ${possessive} plans with the zebra. ${this.name} says: `
+        // SPEECH
+        } else if (adjective_pair == 'long-short' && target_type == 'human') {
+            this.target = 'speech'
+            this.subject = 'Her ' + this.target
+            this.common_context = `A visitor is giving a speech at ${this.name}'s company. ${this.name} is `
+            this.context2 = `After the speech, ${this.name} catches up with ${possessive} colleague, who ${nominative} previously told about ${possessive} expectations for the speech: ${this.name} says: `
+        // TRAIL
+        } else if (adjective_pair == 'long-short' && target_type == 'thing') {
+            this.target = 'trail'
+            this.subject = 'The '+ this.target
+            this.common_context = `On Sunday, ${this.name} goes on an organized group hike. ${capitalize(nominative)} `
+            this.context2 = `On Monday, ${this.name} runs into ${possessive} colleague, who ${nominative} told about ${possessive} feelings about the hike before the weekend, in the hallway. ${this.name} says: `
+        // PARTY
+        } else if (adjective_pair == 'big-small' && target_type == 'human') {
+            this.target = 'party'
+            this.subject = 'His ' + this.target
+            this.common_context = `James invites ${this.name} to his party. James tells ${this.name} that he invited `
+            this.context2 = `The next day, ${this.name} calls ${possessive} colleague, with whom ${nominative} shared ${possessive} expectations about the party. ${this.name} says: `
+        // PLANT
+        } else if (adjective_pair == 'big-small' && target_type == 'thing') {
+            this.target = 'succulent'
+            this.subject = 'The '+ this.target
+            this.common_context = `${this.name} got a flower pot for ${possessive} birthday. ${capitalize(nominative)} buys a succulent online. ${capitalize(nominative)} wants it to be `
+            this.context2 = `After the succulent arrives, ${nominative} calls ${possessive} colleague, who gave ${accusative} the flower pot. ${this.name} says: `
+        // PRESENTATION
+        } else if (adjective_pair == 'good-bad' && target_type == 'human') {
+            this.target = 'presentation'
+            this.subject = 'His ' + this.target
+            this.common_context = `Tim, an intern who recently joined ${this.name}'s team, is giving a big presentation. ${this.name} `
+            this.context2 = `After Tim's presentation, ${this.name} meets ${possessive} colleague, who ${nominative} told about ${possessive} hopes for Tim's presentation. ${this.name} says: `
+        // WEATHER
+        } else if (adjective_pair == 'good-bad' && target_type == 'thing') {
+            this.target = 'weather'
+            this.subject = 'The '+ this.target
+            this.common_context = `${this.name} and ${possessive} friends are planning a picnic for Saturday. ${capitalize(nominative)} is `
+            this.context2 = `After the weekend, ${this.name} sees ${possessive} colleague, who ${nominative} told about ${possessive} feelings about the picnic. ${this.name} says: `
+        }
+    }
+
+    setValueContext(adjective_pair, target_type, value) {
+        // DRIVER
+        if (target_type == "human" && adjective_pair == "fast-slow" && value == "normal") {
+            this.value_context = `fast because ${nominative} is late for a flight. `
+        } else if (target_type == "human" && adjective_pair == "fast-slow" && value == "flipped") {
+            this.value_context = `slowly because ${nominative} gets carsick. ` 
+        // ZEBRA
+        } else if (target_type == "thing" && adjective_pair == "fast-slow" && value == "normal") {
+            this.value_context = `run fast so that ${nominative} can take a slo-mo video of it. `
+        } else if (target_type == "thing" && adjective_pair == "fast-slow" && value == "flipped") {
+            this.value_context = `walk slowly so that ${nominative} can draw a picture of it. `
+        // SPEECH
+        } else if (target_type == "human" && adjective_pair == "long-short" && value == "normal") {
+            this.value_context = `interested in the topic, so ${nominative}'s hoping for a long speech. `
+        } else if (target_type == "human" && adjective_pair == "long-short" && value == "flipped") {
+            this.value_context = `not interested in the topic, so ${nominative}'s hoping for a short speech. ` 
+        // TRAIL
+        } else if (target_type == "thing" && adjective_pair == "long-short" && value == "normal") {
+            this.value_context = `really enjoys hiking, so ${nominative} wants the trail to be long. `
+        } else if (target_type == "thing" && adjective_pair == "long-short" && value == "flipped") {
+            this.value_context = `doesn't enjoy hiking very much, so ${nominative} wants the trail to be short. `
+        // PARTY
+        } else if (target_type == "human" && adjective_pair == "big-small" && value == "normal") {
+            this.value_context = `lots of people. ${(this.name)} says yes because ${nominative} likes big, crowded parties. `
+        } else if (target_type == "human" && adjective_pair == "big-small" && value == "flipped") {
+            this.value_context = `only a few people. ${(this.name)} says yes because ${nominative} likes small, intimate parties. ` 
+        // PLANT
+        } else if (target_type == "thing" && adjective_pair == "big-small" && value == "normal") {
+            this.value_context = `big so that it fills the pot. `
+        } else if (target_type == "thing" && adjective_pair == "big-small" && value == "flipped") {
+            this.value_context = `small so that it fits the pot. `
+        // PRESENTATION
+        } else if (target_type == "human" && adjective_pair == "good-bad" && value == "normal") {
+            this.value_context = `likes Tim and wants him to give a good presentation so he can get a full-time offer. `
+        } else if (target_type == "human" && adjective_pair == "good-bad" && value == "flipped") {
+            this.value_context = `dislikes Tim and wants him to give a bad presentation so he won't get a full-time offer. ` 
+        // WEATHER
+        } else if (target_type == "thing" && adjective_pair == "good-bad" && value == "normal") {
+            this.value_context = `really looking forward to it, so ${nominative} wants the weather to be good. `
+        } else if (target_type == "thing" && adjective_pair == "good-bad" && value == "flipped") {
+            this.value_context = `hoping it will be canceled, so ${nominative} wants the weather to be bad. `
         }
     }
     
@@ -208,7 +303,7 @@ class Stim {
                 {"name":"Catherine", "gender":"F"},
                 {"name":"Nicole", "gender":"F"},
                 {"name":"Christina", "gender":"F"},
-                {"name":"Janet", "gender":"F"},
+                {"name":"${this.name}t", "gender":"F"},
                 {"name":"Samantha", "gender":"F"},
                 {"name":"Carolyn", "gender":"F"},
                 {"name":"Rachel", "gender":"F"},
@@ -241,26 +336,11 @@ class Stim {
         }
     }
 
-    getPronouns(gender) {
-        if (gender == "F") {
-            return ["she", "her", "her"]
-        } else if (gender == "M") {
-            return ["he", "him", "his"]
-        }
-    }
-    
-    setValueContext(adj_pair, target_type, value) {
-        // TODO : write all if-conditions
-        if (target_type == "human" && adj_pair == "fast-slow" && value == "normal") {
-            this.value_context = "fast because she is late for a flight"
-        }
-    }
-    
-    setSentence(subject, negation, adj) {
+    setSentence(subject, negation, adjective) {
         var negation_string = "was"
         if (negation == 1) {
             negation_string = "wasn't"
         }
-        this.sentence = `${subject} ${negation_string} ${adj}.`
+        this.sentence = `${subject} ${negation_string} ${adjective}.`
     }    
 }
