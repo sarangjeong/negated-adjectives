@@ -18,7 +18,7 @@ function make_slides(f) {
     start: function() {
       // hide error message
       $('.err').hide(); // TODO: . = class?
-      $('.attention').hide();
+      $('.attention').hide(); // TODO : add error messages for the other 2 sliders
     },
 
     exampleQ1ThumbVisible : function() {
