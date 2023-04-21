@@ -215,7 +215,7 @@ function make_slides(f) {
       // }
 
       // replace the placeholder in the HTML document with the relevant sentences for this trial
-      var adjectives = stim.adjectivePair.split('-');
+      var adjectives = stim.adjective_pair.split('-');
       console.log(adjectives)
       $("#context1").html(stim.context1);
       $("#context2").html(stim.context2);
@@ -224,10 +224,11 @@ function make_slides(f) {
       $("#adjNeg1").html(adjectives[1]); 
       $("#adjPos2").html(adjectives[0]);
       $("#adjNeg2").html(adjectives[1]); 
-      $("#q1").html(stim.questionState);
-      $("#q2").html(stim.questionValue);
-      $("#q3").html(stim.questionHonest); // TODO: I need to have 4 questions (intention -> honest, positive)
-      $("#q4").html(stim.questionPositive);
+      $("#q1").html(stim.question.state); // TODO: rename the questions
+      $("#q2").html(stim.question.value);
+      $('#intention').html(stim.question.intention.instruction);
+      $("#q3").html(stim.question.intention.honest); // TODO: I need to have 4 questions (intention -> honest, positive)
+      $("#q4").html(stim.question.intention.positive);
       $(".err").hide();
       // hide questions
       $("#q1").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)

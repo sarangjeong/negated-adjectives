@@ -1,3 +1,7 @@
+.q1, .q2, .q3, .q4, .intention {
+    font-style: italic;
+}
+
 .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;

@@ -69,7 +69,7 @@ class Stim {
         this.setPolarity(this.adjective, this.adjective_pair)
 
         this.setSentence(this.subject, this.negation, this.adjective)
-        this.question.intention.instruction = `Think about ${this.name}'s intetion in saying "${this.sentence}".`
+        this.question.intention.instruction = `Think about ${this.name}'s intetion in saying "${this.sentence}"`
         this.setValueContext(this.adjective_pair, this.target_type, this.value)
         this.context1 = this.common_context + this.value_context
 
@@ -305,7 +305,7 @@ class Stim {
                 {"name":"Catherine", "gender":"F"},
                 {"name":"Nicole", "gender":"F"},
                 {"name":"Christina", "gender":"F"},
-                {"name":"${this.name}t", "gender":"F"},
+                {"name":"Janet", "gender":"F"},
                 {"name":"Samantha", "gender":"F"},
                 {"name":"Carolyn", "gender":"F"},
                 {"name":"Rachel", "gender":"F"},
