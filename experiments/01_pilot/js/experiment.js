@@ -231,6 +231,11 @@ function make_slides(f) {
       document.getElementById("q2Slider").value = "50";
       document.getElementById("q3Slider").value = "50";
       document.getElementById("q4Slider").value = "50";
+      // TODO : reset disabled more efficiently
+      document.getElementById("q1Slider").disabled = false;
+      document.getElementById("q2Slider").disabled = false;
+      document.getElementById("q3Slider").disabled = false;
+      document.getElementById("q4Slider").disabled = false;
       $('#q1Slider').removeClass('visibleslider')
       $('#q2Slider').removeClass('visibleslider')
       $('#q3Slider').removeClass('visibleslider')
@@ -292,6 +297,11 @@ function make_slides(f) {
     q1ThumbVisible : function() {
       if ($("#q1Slider").val() != 50); {
         $('#q1Slider').addClass('visibleslider')
+
+        // don't allow modifying slider
+        var slider = document.getElementById("q1Slider");
+        slider.disabled = true; 
+
         $("#intention").show();
         $("#q3").show();
         $("#q3Slider").show();  
@@ -307,6 +317,11 @@ function make_slides(f) {
     q2ThumbVisible : function() {
       if ($("#q2Slider").val() != 50); {
         $('#q2Slider').addClass('visibleslider')
+
+        // don't allow modifying slider
+        var slider = document.getElementById("q2Slider");
+        slider.disabled = true; 
+
         $("#q1").show();
         $("#q1Slider").show();
         $("#endpoint1-1").show();
@@ -319,12 +334,20 @@ function make_slides(f) {
     q3ThumbVisible : function() {
       if ($("#q3Slider").val() != 50); {
         $('#q3Slider').addClass('visibleslider')
+        
+        // don't allow modifying slider
+        var slider = document.getElementById("q3Slider");
+        slider.disabled = true; 
       };
     },
 
     q4ThumbVisible : function() {
       if ($("#q4Slider").val() != 50); {
         $('#q4Slider').addClass('visibleslider')
+
+        // don't allow modifying slider
+        var slider = document.getElementById("q4Slider");
+        slider.disabled = true; 
       };
     },
 
