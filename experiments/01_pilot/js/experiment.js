@@ -17,72 +17,61 @@ function make_slides(f) {
     // this is executed when the slide is shown
     start: function() {
       // hide error message
-      $('.err').hide(); // TODO: . = class?
+      $('.err').hide(); 
       $('.attention').hide(); // TODO : add error messages for the other 2 sliders
-      $("#exampleQ1").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)
-      $("#exampleQ1Slider").hide();
-      $("#exampleQ3").hide();
-      $("#exampleQ3Slider").hide();
-      $("#exampleQ4").hide();
-      $("#exampleQ4Slider").hide();
-      $("#example1Context2").hide();
-      $("#example1Sentence").hide();
-      $("#example1Intention").hide();
-
+      $(".state").hide(); 
+      $(".positive").hide();
+      $(".honest").hide();
+      $(".context2").hide();
+      $(".sentence").hide();
+      $(".intention").hide();
     },
 
-    exampleQ1ThumbVisible : function() {
-      if ($("#exampleQ1Slider").val() != 50); {
-        $('#exampleQ1Slider').addClass('visibleslider')
-        $("#example1Intention").show();
-        $("#exampleQ3").show();
-        $("#exampleQ3Slider").show();  
-        $("#exampleQ4").show();
-        $("#exampleQ4Slider").show();  
+    stateOnClick : function() {
+      if ($("#example1StateSlider").val() != 50); {
+        $('#example1StateSlider').addClass('visibleslider')
+        $(".intention").show();
+        $(".honest").show();
+        $(".positive").show();
       };
     },
 
-    exampleQ2ThumbVisible : function() {
-      if ($("#exampleQ2Slider").val() != 50); {
-        $('#exampleQ2Slider').addClass('visibleslider')
-        $("#exampleQ1").show();
-        $("#exampleQ1Slider").show();
-        
-        // $("#endpoint1-1").show(); // TODO : remove these from trial too
-        // $("#endpoint1-2").show();
-        
-        $("#example1Context2").show();
-        $("#example1Sentence").show();
+    valueOnClick : function() {
+      if ($("#example1ValueSlider").val() != 50); {
+        $('#example1ValueSlider').addClass('visibleslider')
+        $(".context2").show();
+        $(".sentence").show();
+        $(".state").show();
       };
     },
 
-    exampleQ3ThumbVisible : function() {
-      if ($("#exampleQ3Slider").val() != 50); {
-        $('#exampleQ3Slider').addClass('visibleslider')
+    honestOnClick : function() {
+      if ($("#example1HonestSlider").val() != 50); {
+        $('#example1HonestSlider').addClass('visibleslider')
       };
     },
 
-    exampleQ4ThumbVisible : function() {
-      if ($("#exampleQ4Slider").val() != 50); {
-        $('#exampleQ4Slider').addClass('visibleslider')
+    positiveOnClick : function() {
+      if ($("#example1PositiveSlider").val() != 50); {
+        $('#example1PositiveSlider').addClass('visibleslider')
       };
     },
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
-      let q1Status = document.getElementById('exampleQ1Slider');
-      let q2Status = document.getElementById('exampleQ2Slider');
-      let q3Status = document.getElementById('exampleQ3Slider');
-      let q4Status = document.getElementById('exampleQ4Slider'); 
+      let stateStatus = document.getElementById('example1StateSlider');
+      let valueStatus = document.getElementById('example1ValueSlider');
+      let honestStatus = document.getElementById('example1HonestSlider');
+      let positiveStatus = document.getElementById('example1PositiveSlider'); 
 
       // read in the value of the selected radio button
-      this.exampleQ1Response = $("#exampleQ1Slider").val();
+      this.stateResponse = $("#example1StateSlider").val();
       // check whether the participant responded to every question
-      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider' || q4Status.className != 'slider visibleslider') { 
+      if (stateStatus.className != 'slider visibleslider' || valueStatus.className != 'slider visibleslider' || honestStatus.className != 'slider visibleslider' || positiveStatus.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
-    } else if (this.exampleQ1Response > "70") {
+    } else if (this.stateResponse > "70") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention').show(); 
@@ -101,10 +90,10 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example1",
-        "responseState": $("#exampleQ1").val(),
-        "responseValue": $("#exampleQ2").val(),
-        "responseHonest": $("#exampleQ3").val(),
-        "responsePositive": $("#exampleQ4").val()
+        "responseState": $("#example1StateSlider").val(),
+        "responseValue": $("#example1ValueSlider").val(),
+        "responseHonest": $("#example1HonestSlider").val(),
+        "responsePositive": $("#example1PositiveSlider").val()
       });
     },
   });

@@ -81,47 +81,47 @@
         Jane goes on a blind date. <!-- TODO : give value context or not? -->
       </p>
 
-      <div class="exampleQ2" id="exampleQ2">
+      <div class="value">
         <i>What does Jane want her date to look like?</i>
-      </div>
       <p>
         <i>very ugly</i> 
-        <input onclick="_s.exampleQ2ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="exampleQ2Slider"> 
+        <input onclick="_s.valueOnClick()" type="range" min="0" max="100" value="50" class="slider" id="example1ValueSlider"> 
         <i>very handsome</i>
       </p>
+      </div>
 
-      <p class="context2" id="example1Context2">
+      <p class="context2">
         After the date, Jane calls her best friend and says: 
       </p>
 
-      <p class="targetSen" id="example1Sentence">
+      <p class="sentence">
         "My date wasn't handsome."
       </p>
-      <div class="exampleQ1" id="exampleQ1">
+      <div class="state">
         <i>Based on what Jane said, make your best guess: What did Jane's date look like?</i>
       <p>
         <i>very ugly</i> 
-        <input onclick="_s.exampleQ1ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="exampleQ1Slider"> 
+        <input onclick="_s.stateOnClick()" type="range" min="0" max="100" value="50" class="slider" id="example1StateSlider"> 
         <i>very handsome</i>
       </p>
       </div>
 
-      <p id="example1Intention"> <i>Think about why Jane said what she said.</i> </p>
+      <p class="intention"> <i>Think about why Jane said what she said.</i> </p>
 
-      <div class="exampleQ3" id="exampleQ3">
+      <div class="honest">
         <i>How important was it to Jane to say the truth?</i>
       <p>
         <i>not important at all</i> 
-        <input onclick="_s.exampleQ3ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="exampleQ3Slider"> 
+        <input onclick="_s.honestOnClick()" type="range" min="0" max="100" value="50" class="slider" id="example1HonestSlider"> 
         <i>very important</i>
       </p>
       </div>
 
-      <div class="exampleQ4" id="exampleQ4">
+      <div class="positive">
         <i>How important was it to Jane to stay positive?</i>
       <p>
         <i>not important at all</i> 
-        <input onclick="_s.exampleQ4ThumbVisible()" type="range" min="0" max="100" value="50" class="slider" id="exampleQ4Slider"> 
+        <input onclick="_s.positiveOnClick()" type="range" min="0" max="100" value="50" class="slider" id="example1PositiveSlider"> 
         <i>very important</i>
       </p>
       </div>
@@ -166,7 +166,7 @@
         After the date, Tom calls his best friend and says: 
       </p>
 
-      <p class="targetSen">
+      <p class="sentence">
         "My date was pretty."
       </p>
       <div class="exampleQ5">
