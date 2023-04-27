@@ -39,17 +39,23 @@ function make_slides(f) {
       };
     },
 
+    exampleQ4ThumbVisible : function() {
+      if ($("#exampleQ4").val() != 50); {
+        $('#exampleQ4').addClass('visibleslider')
+      };
+    },
+
     // this is executed when the participant clicks the "Continue button"
     button: function() {
       let q1Status = document.getElementById('exampleQ1');
       let q2Status = document.getElementById('exampleQ2');
       let q3Status = document.getElementById('exampleQ3');
-      // let q4Status = document.getElementById('exampleQ4'); // TODO: uncomment after adding q4 (questionPositive)
+      let q4Status = document.getElementById('exampleQ4'); 
 
       // read in the value of the selected radio button
       this.exampleQ1Response = $("#exampleQ1").val();
       // check whether the participant responded to every question
-      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider') { // || q4Status.className != 'slider visibleslider' // TODO: add after adding q4
+      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider' || q4Status.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
@@ -74,7 +80,8 @@ function make_slides(f) {
         "id": "example1",
         "responseState": $("#exampleQ1").val(),
         "responseValue": $("#exampleQ2").val(),
-        "responseIntention": $("#exampleQ3").val(), // TODO: change to questionHonest, add questionPositive
+        "responseHonest": $("#exampleQ3").val(),
+        "responsePositive": $("#exampleQ4").val()
       });
     },
   });
@@ -90,12 +97,6 @@ function make_slides(f) {
       $('.attention').hide();
     },
 
-    exampleQ4ThumbVisible : function() {
-      if ($("#exampleQ4").val() != 50); {
-        $('#exampleQ4').addClass('visibleslider')
-      };
-    },
-
     exampleQ5ThumbVisible : function() {
       if ($("#exampleQ5").val() != 50); {
         $('#exampleQ5').addClass('visibleslider')
@@ -108,21 +109,33 @@ function make_slides(f) {
       };
     },
 
+    exampleQ7ThumbVisible : function() {
+      if ($("#exampleQ7").val() != 50); {
+        $('#exampleQ7').addClass('visibleslider')
+      };
+    },
+
+    exampleQ8ThumbVisible : function() {
+      if ($("#exampleQ8").val() != 50); {
+        $('#exampleQ8').addClass('visibleslider')
+      };
+    },
+
     // this is executed when the participant clicks the "Continue button"
     button: function() {
-      let q1Status = document.getElementById('exampleQ4'); // TODO: renumber (Q5-Q8) or refactor
-      let q2Status = document.getElementById('exampleQ5');
-      let q3Status = document.getElementById('exampleQ6');
-      // let q4Status = document.getElementById('exampleQ8'); // TODO: uncomment after adding q4 (questionPositive)
+      let q1Status = document.getElementById('exampleQ5'); 
+      let q2Status = document.getElementById('exampleQ6');
+      let q3Status = document.getElementById('exampleQ7');
+      let q4Status = document.getElementById('exampleQ8'); 
 
       // read in the value of the selected radio button
-      this.exampleQ4Response = $("#exampleQ4").val(); // TODO: change to Q5 or refactor
+      this.exampleQ5Response = $("#exampleQ5").val(); 
       // check whether the participant responded to every question
-      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider') { // || q4Status.className != 'slider visibleslider' // TODO: add after adding q4
+      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider' || q4Status.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
-    } else if (this.exampleQ4Response < "30") {
+    } else if (this.exampleQ5Response < "30") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention').show(); 
@@ -141,9 +154,10 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example2",
-        "responseState": $("#exampleQ4").val(),
-        "responseValue": $("#exampleQ5").val(),
-        "responseIntention": $("#exampleQ6").val(), // TODO: change to questionHonest, add questionPositive
+        "responseState": $("#exampleQ5").val(),
+        "responseValue": $("#exampleQ6").val(),
+        "responseHonest": $("#exampleQ7").val(),
+        "responsePositive": $("#exampleQ8").val()
       });
     },
   });
@@ -227,7 +241,7 @@ function make_slides(f) {
       $("#q1").html(stim.question.state); // TODO: rename the questions
       $("#q2").html(stim.question.value);
       $('#intention').html(stim.question.intention.instruction);
-      $("#q3").html(stim.question.intention.honest); // TODO: I need to have 4 questions (intention -> honest, positive)
+      $("#q3").html(stim.question.intention.honest); 
       $("#q4").html(stim.question.intention.positive);
       $(".err").hide();
       // hide questions
