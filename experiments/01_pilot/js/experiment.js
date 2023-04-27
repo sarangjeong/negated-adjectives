@@ -19,41 +19,64 @@ function make_slides(f) {
       // hide error message
       $('.err').hide(); // TODO: . = class?
       $('.attention').hide(); // TODO : add error messages for the other 2 sliders
+      $("#exampleQ1").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)
+      $("#exampleQ1Slider").hide();
+      $("#exampleQ3").hide();
+      $("#exampleQ3Slider").hide();
+      $("#exampleQ4").hide();
+      $("#exampleQ4Slider").hide();
+      $("#example1Context2").hide();
+      $("#example1Sentence").hide();
+      $("#example1Intention").hide();
+
     },
 
     exampleQ1ThumbVisible : function() {
-      if ($("#exampleQ1").val() != 50); {
-        $('#exampleQ1').addClass('visibleslider')
+      if ($("#exampleQ1Slider").val() != 50); {
+        $('#exampleQ1Slider').addClass('visibleslider')
+        $("#example1Intention").show();
+        $("#exampleQ3").show();
+        $("#exampleQ3Slider").show();  
+        $("#exampleQ4").show();
+        $("#exampleQ4Slider").show();  
       };
     },
 
     exampleQ2ThumbVisible : function() {
-      if ($("#exampleQ2").val() != 50); {
-        $('#exampleQ2').addClass('visibleslider')
+      if ($("#exampleQ2Slider").val() != 50); {
+        $('#exampleQ2Slider').addClass('visibleslider')
+        $("#exampleQ1").show();
+        $("#exampleQ1Slider").show();
+        
+        // $("#endpoint1-1").show(); // TODO : remove these from trial too
+        // $("#endpoint1-2").show();
+        
+        $("#example1Context2").show();
+        $("#example1Sentence").show();
       };
     },
 
     exampleQ3ThumbVisible : function() {
-      if ($("#exampleQ3").val() != 50); {
-        $('#exampleQ3').addClass('visibleslider')
+      if ($("#exampleQ3Slider").val() != 50); {
+        $('#exampleQ3Slider').addClass('visibleslider')
       };
     },
 
     exampleQ4ThumbVisible : function() {
-      if ($("#exampleQ4").val() != 50); {
-        $('#exampleQ4').addClass('visibleslider')
+      if ($("#exampleQ4Slider").val() != 50); {
+        $('#exampleQ4Slider').addClass('visibleslider')
       };
     },
 
     // this is executed when the participant clicks the "Continue button"
     button: function() {
-      let q1Status = document.getElementById('exampleQ1');
-      let q2Status = document.getElementById('exampleQ2');
-      let q3Status = document.getElementById('exampleQ3');
-      let q4Status = document.getElementById('exampleQ4'); 
+      let q1Status = document.getElementById('exampleQ1Slider');
+      let q2Status = document.getElementById('exampleQ2Slider');
+      let q3Status = document.getElementById('exampleQ3Slider');
+      let q4Status = document.getElementById('exampleQ4Slider'); 
 
       // read in the value of the selected radio button
-      this.exampleQ1Response = $("#exampleQ1").val();
+      this.exampleQ1Response = $("#exampleQ1Slider").val();
       // check whether the participant responded to every question
       if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider' || q4Status.className != 'slider visibleslider') { 
         $('.err').show();
