@@ -355,6 +355,12 @@ function make_slides(f) {
         "responseValue": $("#q2Slider").val(),
         "responseHonest": $("#q3Slider").val(),
         "responsePositive": $("#q4Slider").val(),
+        "speakerName": this.stim.name,
+        "speakerGender": this.stim.gender, 
+        "adjective": this.stim.adjective,
+        "adjective_pair": this.stim.adjective_pair,
+        "polarity": this.stim.polarity,
+        "negation": this.stim.negation
       });
     },
   });

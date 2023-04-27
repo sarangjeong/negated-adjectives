@@ -99,7 +99,9 @@ class Stim {
             "context1": this.context1, 
             "context2": this.context2,
             "sentence": this.sentence,
-            "question": this.question
+            "question": this.question,
+            "name": this.name,
+            "gender": this.gender
         }
     }
 
