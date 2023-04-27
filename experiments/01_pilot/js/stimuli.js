@@ -69,12 +69,21 @@ class Stim {
         this.setPolarity(this.adjective, this.adjective_pair)
 
         this.setSentence(this.subject, this.negation, this.adjective)
-        this.question.intention.instruction = `Think about why ${this.name} said what ${this.name} said.` // TODO : define pronouns globally and change `this.name` to `nominative`
+        
+        // TODO : define pronouns globally
+        let nominative, accusative, possessive
+        [nominative, accusative, possessive] = this.getPronouns(this.gender)
+        this.question.intention.instruction = `Think about why ${this.name} said what ${nominative} said.` 
+        
         this.setValueContext(this.adjective_pair, this.target_type, this.value)
         this.context1 = this.common_context + this.value_context
 
         this.question.state = `Based on what ${this.name} said, make your best guess: What was the ${this.property} of the ${this.target}?`
-        this.question.value = `What ${this.property} does ${this.name} want the ${this.target} to have?`
+        
+        // TODO : remove this.property? (maybe not, becaus it's used in state question)
+        // TODO : does it sound natural? "What does Jane want the driver to be like?"
+        this.question.value = `What does ${this.name} want the ${this.target} to be like?`
+        
         this.question.intention.honest = `How important was it to ${this.name} to be honest?`
         this.question.intention.positive = `How important was it to ${this.name} to be positive?`
     }
@@ -343,6 +352,6 @@ class Stim {
         if (negation == 1) {
             negation_string = "wasn't"
         }
-        this.sentence = `${subject} ${negation_string} ${adjective}.`
+        this.sentence = `"${subject} ${negation_string} ${adjective}."`
     }    
 }
