@@ -69,7 +69,7 @@ class Stim {
         this.setPolarity(this.adjective, this.adjective_pair)
 
         this.setSentence(this.subject, this.negation, this.adjective)
-        this.question.intention.instruction = `Think about ${this.name}'s intetion in saying "${this.sentence}"`
+        this.question.intention.instruction = `Think about why ${this.name} said what ${this.name} said.` // TODO : define pronouns globally and change `this.name` to `nominative`
         this.setValueContext(this.adjective_pair, this.target_type, this.value)
         this.context1 = this.common_context + this.value_context
 
