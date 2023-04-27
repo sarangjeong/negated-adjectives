@@ -71,7 +71,7 @@ function make_slides(f) {
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
-    } else if (this.stateResponse > "70") {
+    } else if (this.stateResponse < "30") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention').show(); 
