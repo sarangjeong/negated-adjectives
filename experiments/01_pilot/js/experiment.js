@@ -106,48 +106,60 @@ function make_slides(f) {
     start: function() {
       // hide error message
       $('.err').hide();
-      $('.attention').hide();
+      $('.attention').hide(); // TODO : add error messages for the other 2 sliders
+      $(".state").hide(); 
+      $(".positive").hide();
+      $(".honest").hide();
+      $(".context2").hide();
+      $(".sentence").hide();
+      $(".intention").hide();
     },
 
-    exampleQ5ThumbVisible : function() {
-      if ($("#exampleQ5").val() != 50); {
-        $('#exampleQ5').addClass('visibleslider')
+    stateOnClick : function() {
+      if ($("#example2StateSlider").val() != 50); {
+        $('#example2StateSlider').addClass('visibleslider')
+        $(".intention").show();
+        $(".honest").show();
+        $(".positive").show();
       };
     },
 
-    exampleQ6ThumbVisible : function() {
-      if ($("#exampleQ6").val() != 50); {
-        $('#exampleQ6').addClass('visibleslider')
+    valueOnClick : function() {
+      if ($("#example2ValueSlider").val() != 50); {
+        $('#example2ValueSlider').addClass('visibleslider')
+        $(".context2").show();
+        $(".sentence").show();
+        $(".state").show();
       };
     },
 
-    exampleQ7ThumbVisible : function() {
-      if ($("#exampleQ7").val() != 50); {
-        $('#exampleQ7').addClass('visibleslider')
+    honestOnClick : function() {
+      if ($("#example2HonestSlider").val() != 50); {
+        $('#example2HonestSlider').addClass('visibleslider')
       };
     },
 
-    exampleQ8ThumbVisible : function() {
-      if ($("#exampleQ8").val() != 50); {
-        $('#exampleQ8').addClass('visibleslider')
+    positiveOnClick : function() {
+      if ($("#example2PositiveSlider").val() != 50); {
+        $('#example2PositiveSlider').addClass('visibleslider')
       };
     },
-
+    
     // this is executed when the participant clicks the "Continue button"
     button: function() {
-      let q1Status = document.getElementById('exampleQ5'); 
-      let q2Status = document.getElementById('exampleQ6');
-      let q3Status = document.getElementById('exampleQ7');
-      let q4Status = document.getElementById('exampleQ8'); 
+      let stateStatus = document.getElementById('example2StateSlider');
+      let valueStatus = document.getElementById('example2ValueSlider');
+      let honestStatus = document.getElementById('example2HonestSlider');
+      let positiveStatus = document.getElementById('example2PositiveSlider'); 
 
       // read in the value of the selected radio button
-      this.exampleQ5Response = $("#exampleQ5").val(); 
+      this.stateResponse = $("#example2StateSlider").val();
       // check whether the participant responded to every question
-      if (q1Status.className != 'slider visibleslider' || q2Status.className != 'slider visibleslider' || q3Status.className != 'slider visibleslider' || q4Status.className != 'slider visibleslider') { 
+      if (stateStatus.className != 'slider visibleslider' || valueStatus.className != 'slider visibleslider' || honestStatus.className != 'slider visibleslider' || positiveStatus.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
-    } else if (this.exampleQ5Response < "30") {
+    } else if (this.stateResponse < "30") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention').show(); 
@@ -166,10 +178,10 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         "id": "example2",
-        "responseState": $("#exampleQ5").val(),
-        "responseValue": $("#exampleQ6").val(),
-        "responseHonest": $("#exampleQ7").val(),
-        "responsePositive": $("#exampleQ8").val()
+        "responseState": $("#example2StateSlider").val(),
+        "responseValue": $("#example2ValueSlider").val(),
+        "responseHonest": $("#example2HonestSlider").val(),
+        "responsePositive": $("#example2PositiveSlider").val()
       });
     },
   });
