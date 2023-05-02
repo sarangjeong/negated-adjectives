@@ -158,6 +158,7 @@ function make_slides(f) {
       if (stateStatus.className != 'slider visibleslider' || valueStatus.className != 'slider visibleslider' || honestStatus.className != 'slider visibleslider' || positiveStatus.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
+      // TODO : attention check is not working for example 1 & 2
       // check whether the participant selected a reasonable value 
     } else if (this.stateResponse < "30") {
         // participant gave non-reasonable response --> show error message
