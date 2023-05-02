@@ -105,6 +105,32 @@ class Stim {
         }
     }
 
+fillers = [
+    {
+        "adjective": "tasty",
+        "adjective_pair": "tasty-gross",
+        "polarity": "positive",
+        "target_type": ???, 
+        "value": ???, 
+        "negation": 0, 
+        "context1": "LISTENER is into baking these days. LISTENER bakes sugar-free, butter-free cookies and gives some to LISTENER'S friend, SPEAKER. SPEAKER eats one, and it tastes like mud.",
+        "context2": "When Jane asks for feedback, Susan says:",
+        "sentence": "It's tasty.",
+        "question": {
+            "state": "What was the cookie like?", 
+            "value": "Based on what SPEAKER said, make your best guess: What did SPEAKER want the cookie to be like?",
+            "intention": {
+                "instruction": "Think about why SPEAKER said what SPEAKER said.",
+                "honest": "How important was it to SPEAKER to say the truth?",
+                "positive": "How important was it to SPEAKER to be positive?"
+            }
+        },
+        "name": ???,
+        "gender": ???
+    }
+]
+
+
     getPronouns(gender) {
         if (gender == "F") {
             return ["she", "her", "her"]
