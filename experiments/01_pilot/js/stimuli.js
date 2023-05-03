@@ -17,6 +17,187 @@ for (let i = 0; i < target_types.length; i++) {
 adjectives = _.shuffle(adjectives)
 conditions = _.shuffle(conditions)
 
+
+fillers = [
+    {
+        "type": "filler",
+        "adjective": "tasty",
+        "adjective_pair": "tasty-gross",
+        "polarity": "positive",
+        "target_type": "listener", 
+        "state": "negative", 
+        "negation": 0, 
+        "context1": "Jane is into baking these days. She bakes sugar-free, butter-free cookies and gives some to her friend, Sarah. Sarah eats one, and it tastes like mud.",
+        "context2": "When Jane asks for feedback, Sarah says:",
+        "sentence": "\"It's tasty.\"",
+        "question": {
+            "state": "According to the story, what was the cookie actually like?", 
+            "value": "Make your best guess: What does Sarah want the cookie to be like?",
+            "intention": {
+                "instruction": "Think about why Sarah said what she said.",
+                "honest": "How important was it to Sarah to say the truth?",
+                "positive": "How important was it to Sarah to be positive?"
+            }
+        },
+        "name": "Sarah",
+        "gender": "F"
+    }, {
+        "type": "filler",
+        "adjective": "gross",
+        "adjective_pair": "tasty-gross",
+        "polarity": "negative",
+        "target_type": "listener", 
+        "state": "negative", 
+        "negation": 0, 
+        "context1": "Chris is into baking these days. Chris bakes sugar-free, butter-free cookies and gives some to his friend, Ethan. Ethan eats one, and it tastes like mud.",
+        "context2": "When Chris asks for feedback, Ethan says:",
+        "sentence": "\"It's gross.\"",
+        "question": {
+            "state": "According to the story, what was the cookie actually like?", 
+            "value": "Make your best guess: What does Ethan want the cookie to be like?",
+            "intention": {
+                "instruction": "Think about why Ethan said what he said.",
+                "honest": "How important was it to Ethan to say the truth?",
+                "positive": "How important was it to Ethan to be positive?"
+            }
+        },
+        "name": "Ethan",
+        "gender": "M"
+    }, {
+        "type": "filler",
+        "adjective": "tasty",
+        "adjective_pair": "tasty-gross",
+        "polarity": "positive",
+        "target_type": "listener", 
+        "state": "positive", 
+        "negation": 0, 
+        "context1": "James is into baking these days. He bakes sugar-free, butter-free cookies and gives some to his friend, Susan. Susan eats one, and it tastes great.",
+        "context2": "When James asks for feedback, Susan says:",
+        "sentence": "\"It's tasty.\"",
+        "question": {
+            "state": "According to the story, what was the cookie actually like?", 
+            "value": "Make your best guess: What does Susan want the cookie to be like?",
+            "intention": {
+                "instruction": "Think about why Susan said what she said.",
+                "honest": "How important was it to Susan to say the truth?",
+                "positive": "How important was it to Susan to be positive?"
+            }
+        },
+        "name": "Susan",
+        "gender": "F"
+    }, {
+        "type": "filler",
+        "adjective": "gross",
+        "adjective_pair": "tasty-gross",
+        "polarity": "negative",
+        "target_type": "listener", 
+        "state": "positive", 
+        "negation": 0, 
+        "context1": "Penny is into baking these days. She bakes sugar-free, butter-free cookies and gives some to her friend, Rob. Rob eats one, and it tastes great.",
+        "context2": "When Penny asks for feedback, Rob says:",
+        "sentence": "\"It's gross.\"",
+        "question": {
+            "state": "According to the story, what was the cookie actually like?", 
+            "value": "Make your best guess: What does Rob want the cookie to be like?",
+            "intention": {
+                "instruction": "Think about why Rob said what he said.",
+                "honest": "How important was it to Rob to say the truth?",
+                "positive": "How important was it to Rob to be positive?"
+            }
+        },
+        "name": "Rob",
+        "gender": "M"
+    }, { 
+        "type": "filler",
+        "adjective": "funny",
+        "adjective_pair": "funny-boring",
+        "polarity": "positive",
+        "target_type": "listener", 
+        "state": "negative", 
+        "negation": 0, 
+        "context1": "Emily is trying to be a famous comedian on Youtube. She makes a video clip of herself and sends it to her friend, George. George watches it, and it almost puts him to sleep.",
+        "context2": "When Emily asks for feedback, George says:",
+        "sentence": "\"It's funny.\"",
+        "question": {
+            "state": "According to the story, what was the clip actually like?", 
+            "value": "Make your best guess: What does George want the clip to be like?",
+            "intention": {
+                "instruction": "Think about why George said what he said.",
+                "honest": "How important was it to George to say the truth?",
+                "positive": "How important was it to George to be positive?"
+            }
+        },
+        "name": "George",
+        "gender": "M"
+    }, { 
+        "type": "filler",
+        "adjective": "boring",
+        "adjective_pair": "funny-boring",
+        "polarity": "negative",
+        "target_type": "listener", 
+        "state": "negative", 
+        "negation": 0, 
+        "context1": "Eric is trying to be a famous comedian on Youtube. He makes a video clip of himself and sends it to his friend, Lucy. Lucy watches it, and it almost puts her to sleep.",
+        "context2": "When Eric asks for feedback, Lucy says:",
+        "sentence": "\"It's boring.\"",
+        "question": {
+            "state": "According to the story, what was the clip actually like?", 
+            "value": "Make your best guess: What does Lucy want the clip to be like?",
+            "intention": {
+                "instruction": "Think about why Lucy said what she said.",
+                "honest": "How important was it to Lucy to say the truth?",
+                "positive": "How important was it to Lucy to be positive?"
+            }
+        },
+        "name": "Lucy",
+        "gender": "F"
+    }, { 
+        "type": "filler",
+        "adjective": "funny",
+        "adjective_pair": "funny-boring",
+        "polarity": "positive",
+        "target_type": "listener", 
+        "state": "positive", 
+        "negation": 0, 
+        "context1": "Andrew is trying to be a famous comedian on Youtube. He makes a video clip of himself and sends it to his friend, Mark. Mark watches it, and it cracks him up.",
+        "context2": "When Andrew asks for feedback, Mark says:",
+        "sentence": "\"It's funny.\"",
+        "question": {
+            "state": "According to the story, what was the clip actually like?", 
+            "value": "Make your best guess: What does Mark want the clip to be like?",
+            "intention": {
+                "instruction": "Think about why Mark said what he said.",
+                "honest": "How important was it to Mark to say the truth?",
+                "positive": "How important was it to Mark to be positive?"
+            }
+        },
+        "name": "Mark",
+        "gender": "M"
+    }, { 
+        "type": "filler",
+        "adjective": "boring",
+        "adjective_pair": "funny-boring",
+        "polarity": "negative",
+        "target_type": "listener", 
+        "state": "positive", 
+        "negation": 0, 
+        "context1": "Mary is trying to be a famous comedian on Youtube. She makes a video clip of herself and sends it to her friend, Carol. Carol watches it, and it cracks her up.",
+        "context2": "When Mary asks for feedback, Carol says:",
+        "sentence": "\"It's boring.\"",
+        "question": {
+            "state": "According to the story, what was the clip actually like?", 
+            "value": "Make your best guess: What does Carol want the clip to be like?",
+            "intention": {
+                "instruction": "Think about why Carol said what she said.",
+                "honest": "How important was it to Carol to say the truth?",
+                "positive": "How important was it to Carol to be positive?"
+            }
+        },
+        "name": "Carol",
+        "gender": "F"
+    }, 
+]
+
 function makeStimList() {
     var stims = [];
     for (let index = 0; index < adjectives.length; index++) { // this assumes length of adjectives & length of conditions are identical
@@ -25,6 +206,9 @@ function makeStimList() {
       var stim = new Stim(adjective, target_type, value, negation).toDict() 
       stims.push(stim)
     }
+    stims = stims.concat(fillers);
+    stims = _.shuffle(stims);
+    console.log(stims)
     return stims
   }
 
@@ -90,6 +274,7 @@ class Stim {
     
     toDict() {
         return {
+            "type": "main_stimuli",
             "adjective": this.adjective,
             "adjective_pair": this.adjective_pair,
             "polarity": this.polarity,
@@ -104,32 +289,6 @@ class Stim {
             "gender": this.gender
         }
     }
-
-fillers = [
-    {
-        "adjective": "tasty",
-        "adjective_pair": "tasty-gross",
-        "polarity": "positive",
-        "target_type": ???, 
-        "value": ???, 
-        "negation": 0, 
-        "context1": "LISTENER is into baking these days. LISTENER bakes sugar-free, butter-free cookies and gives some to LISTENER'S friend, SPEAKER. SPEAKER eats one, and it tastes like mud.",
-        "context2": "When Jane asks for feedback, Susan says:",
-        "sentence": "It's tasty.",
-        "question": {
-            "state": "What was the cookie like?", 
-            "value": "Based on what SPEAKER said, make your best guess: What did SPEAKER want the cookie to be like?",
-            "intention": {
-                "instruction": "Think about why SPEAKER said what SPEAKER said.",
-                "honest": "How important was it to SPEAKER to say the truth?",
-                "positive": "How important was it to SPEAKER to be positive?"
-            }
-        },
-        "name": ???,
-        "gender": ???
-    }
-]
-
 
     getPronouns(gender) {
         if (gender == "F") {
