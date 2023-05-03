@@ -229,9 +229,9 @@ fillers = [
             this.value_context = `small so that it fits the pot. `
         // PRESENTATION
         } else if (target_type == "human" && adjective_pair == "good-bad" && value == "normal") {
-            this.value_context = `likes Tim and wants him to give a good presentation so he can get a full-time offer. `
+            this.value_context = `likes Tim and wants him to give a good presentation so Tim can get a full-time offer. `
         } else if (target_type == "human" && adjective_pair == "good-bad" && value == "flipped") {
-            this.value_context = `dislikes Tim and wants him to give a bad presentation so he won't get a full-time offer. ` 
+            this.value_context = `dislikes Tim and wants him to give a bad presentation so Tim won't get a full-time offer. ` 
         // WEATHER
         } else if (target_type == "thing" && adjective_pair == "good-bad" && value == "normal") {
             this.value_context = `really looking forward to it, so ${nominative} wants the weather to be good. `
