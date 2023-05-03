@@ -77,6 +77,9 @@ visibility: hidden;
     font-weight: bold;
 }
 
+.state, .value, .intention, .honest, .positive, .endpoint{
+    font-weight: lighter;
+}
 .row {
     padding-bottom: .5em;
 }
