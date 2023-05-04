@@ -42,7 +42,7 @@ controls = [
         "name": "Sarah",
         "gender": "F"
     }, {
-        "type": "filler",
+        "type": "control",
         "adjective": "gross",
         "adjective_pair": "tasty-gross",
         "polarity": "negative",
@@ -64,7 +64,7 @@ controls = [
         "name": "Ethan",
         "gender": "M"
     }, {
-        "type": "filler",
+        "type": "control",
         "adjective": "tasty",
         "adjective_pair": "tasty-gross",
         "polarity": "positive",
@@ -86,7 +86,7 @@ controls = [
         "name": "Susan",
         "gender": "F"
     }, {
-        "type": "filler",
+        "type": "control",
         "adjective": "gross",
         "adjective_pair": "tasty-gross",
         "polarity": "negative",
@@ -108,7 +108,7 @@ controls = [
         "name": "Rob",
         "gender": "M"
     }, { 
-        "type": "filler",
+        "type": "control",
         "adjective": "funny",
         "adjective_pair": "funny-boring",
         "polarity": "positive",
@@ -130,7 +130,7 @@ controls = [
         "name": "George",
         "gender": "M"
     }, { 
-        "type": "filler",
+        "type": "control",
         "adjective": "boring",
         "adjective_pair": "funny-boring",
         "polarity": "negative",
@@ -152,7 +152,7 @@ controls = [
         "name": "Lucy",
         "gender": "F"
     }, { 
-        "type": "filler",
+        "type": "control",
         "adjective": "funny",
         "adjective_pair": "funny-boring",
         "polarity": "positive",
@@ -174,7 +174,7 @@ controls = [
         "name": "Mark",
         "gender": "M"
     }, { 
-        "type": "filler",
+        "type": "control",
         "adjective": "boring",
         "adjective_pair": "funny-boring",
         "polarity": "negative",
