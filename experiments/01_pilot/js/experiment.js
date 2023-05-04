@@ -286,8 +286,15 @@ function make_slides(f) {
       $("#adjNeg1").html(adjectives[1]); 
       $("#adjPos2").html(adjectives[0]);
       $("#adjNeg2").html(adjectives[1]); 
-      $("#q1").html(stim.question.value); // TODO: rename the questions
-      $("#q2").html(stim.question.state);
+      console.log(stim.type)
+      if (stim.type == "control") {
+        console.log("This is control")
+        $("#q1").html(stim.question.state); 
+        $("#q2").html(stim.question.value);
+      } else {
+        $("#q1").html(stim.question.value); 
+        $("#q2").html(stim.question.state);
+      }
       $('#intention').html(stim.question.intention.instruction);
       $("#q3").html(stim.question.intention.honest); 
       $("#q4").html(stim.question.intention.positive);
@@ -390,20 +397,41 @@ function make_slides(f) {
     log_responses: function() {
       // add response to exp.data_trials
       // this data will be submitted at the end of the experiment
-      exp.data_trials.push({
-        "slide_number_in_experiment": exp.phase,
-        // "id": this.stim.TGrep,
-        "responseValue": $("#q1Slider").val(),
-        "responseState": $("#q2Slider").val(),
-        "responseHonest": $("#q3Slider").val(),
-        "responsePositive": $("#q4Slider").val(),
-        "speakerName": this.stim.name,
-        "speakerGender": this.stim.gender, 
-        "adjective": this.stim.adjective,
-        "adjective_pair": this.stim.adjective_pair,
-        "polarity": this.stim.polarity,
-        "negation": this.stim.negation
-      });
+      
+      if (this.stim.type == "control") {
+        exp.data_trials.push({
+          "slide_number_in_experiment": exp.phase,
+          // "id": this.stim.TGrep,
+          "stimulusType": this.stim.type,
+          "responseState": $("#q1Slider").val(),
+          "responseValue": $("#q2Slider").val(),
+          "responseHonest": $("#q3Slider").val(),
+          "responsePositive": $("#q4Slider").val(),
+          "speakerName": this.stim.name,
+          "speakerGender": this.stim.gender, 
+          "adjective": this.stim.adjective,
+          "adjective_pair": this.stim.adjective_pair,
+          "polarity": this.stim.polarity,
+          "negation": this.stim.negation
+        }); 
+      } 
+      else {
+        exp.data_trials.push({
+          "slide_number_in_experiment": exp.phase,
+          // "id": this.stim.TGrep,
+          "stimulusType": this.stim.type,
+          "responseValue": $("#q1Slider").val(),
+          "responseState": $("#q2Slider").val(),
+          "responseHonest": $("#q3Slider").val(),
+          "responsePositive": $("#q4Slider").val(),
+          "speakerName": this.stim.name,
+          "speakerGender": this.stim.gender, 
+          "adjective": this.stim.adjective,
+          "adjective_pair": this.stim.adjective_pair,
+          "polarity": this.stim.polarity,
+          "negation": this.stim.negation
+        }); 
+      }
     },
   });
 
