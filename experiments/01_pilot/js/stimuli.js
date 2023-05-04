@@ -18,9 +18,9 @@ adjectives = _.shuffle(adjectives)
 conditions = _.shuffle(conditions)
 
 
-fillers = [
+controls = [
     {
-        "type": "filler",
+        "type": "control",
         "adjective": "tasty",
         "adjective_pair": "tasty-gross",
         "polarity": "positive",
@@ -206,7 +206,7 @@ function makeStimList() {
       var stim = new Stim(adjective, target_type, value, negation).toDict() 
       stims.push(stim)
     }
-    stims = stims.concat(fillers);
+    stims = stims.concat(controls);
     stims = _.shuffle(stims);
     console.log(stims)
     return stims
