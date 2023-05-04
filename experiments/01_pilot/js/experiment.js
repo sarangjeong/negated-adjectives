@@ -278,7 +278,7 @@ function make_slides(f) {
 
       // replace the placeholder in the HTML document with the relevant sentences for this trial
       var adjectives = stim.adjective_pair.split('-');
-      console.log(adjectives)
+      
       $("#context1").html(stim.context1);
       $("#context2").html(stim.context2);
       $("#sentence").html(stim.sentence);
@@ -286,21 +286,21 @@ function make_slides(f) {
       $("#adjNeg1").html(adjectives[1]); 
       $("#adjPos2").html(adjectives[0]);
       $("#adjNeg2").html(adjectives[1]); 
-      $("#q1").html(stim.question.state); // TODO: rename the questions
-      $("#q2").html(stim.question.value);
+      $("#q1").html(stim.question.value); // TODO: rename the questions
+      $("#q2").html(stim.question.state);
       $('#intention').html(stim.question.intention.instruction);
       $("#q3").html(stim.question.intention.honest); 
       $("#q4").html(stim.question.intention.positive);
       $(".err").hide();
       // hide questions
-      $("#q1").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)
-      $("#q1Slider").hide();
+      $("#q2").hide(); // TODO: rename q1 - q3 to qState etc (their positions changed)
+      $("#q2Slider").hide();
       $("#q3").hide();
       $("#q3Slider").hide();
       $("#q4").hide();
       $("#q4Slider").hide();
-      $("#endpoint1-1").hide();
-      $("#endpoint1-2").hide();
+      $("#endpoint2-1").hide();
+      $("#endpoint2-2").hide();
       $("#endpoint3-1").hide();
       $("#endpoint3-2").hide();
       $("#endpoint4-1").hide();
@@ -313,12 +313,12 @@ function make_slides(f) {
     // show questions sequentially
     
 
-    q1ThumbVisible : function() {
-      if ($("#q1Slider").val() != 50); {
-        $('#q1Slider').addClass('visibleslider')
+    q2ThumbVisible : function() {
+      if ($("#q2Slider").val() != 50); {
+        $('#q2Slider').addClass('visibleslider')
 
         // don't allow modifying slider
-        var slider = document.getElementById("q1Slider");
+        var slider = document.getElementById("q2Slider");
         slider.disabled = true; 
 
         $("#intention").show();
@@ -333,18 +333,18 @@ function make_slides(f) {
       };
     },
 
-    q2ThumbVisible : function() {
-      if ($("#q2Slider").val() != 50); {
-        $('#q2Slider').addClass('visibleslider')
+    q1ThumbVisible : function() {
+      if ($("#q1Slider").val() != 50); {
+        $('#q1Slider').addClass('visibleslider')
 
         // don't allow modifying slider
-        var slider = document.getElementById("q2Slider");
+        var slider = document.getElementById("q1Slider");
         slider.disabled = true; 
 
-        $("#q1").show();
-        $("#q1Slider").show();
-        $("#endpoint1-1").show();
-        $("#endpoint1-2").show();
+        $("#q2").show();
+        $("#q2Slider").show();
+        $("#endpoint2-1").show();
+        $("#endpoint2-2").show();
         $("#context2").show();
         $("#sentence").show();
       };
@@ -393,8 +393,8 @@ function make_slides(f) {
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
         // "id": this.stim.TGrep,
-        "responseState": $("#q1Slider").val(), // TODO: what is #?
-        "responseValue": $("#q2Slider").val(),
+        "responseValue": $("#q1Slider").val(),
+        "responseState": $("#q2Slider").val(),
         "responseHonest": $("#q3Slider").val(),
         "responsePositive": $("#q4Slider").val(),
         "speakerName": this.stim.name,
