@@ -18,7 +18,8 @@ function make_slides(f) {
     start: function() {
       // hide error message
       $('.err').hide(); 
-      $('.attention').hide(); // TODO : add error messages for the other 2 sliders
+      $('.attention_state').hide();
+      $('.attention_value').hide();
       $(".state").hide(); 
       $(".positive").hide();
       $(".honest").hide();
@@ -66,15 +67,23 @@ function make_slides(f) {
 
       // read in the value of the selected radio button
       this.stateResponse = $("#example1StateSlider").val();
+      this.valueResponse = $("#example1ValueSlider").val();
+
       // check whether the participant responded to every question
       if (stateStatus.className != 'slider visibleslider' || valueStatus.className != 'slider visibleslider' || honestStatus.className != 'slider visibleslider' || positiveStatus.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
-    } else if (this.stateResponse < "30") {
+    } else if (this.valueResponse > "50") {
+      // participant gave non-reasonable response --> show error message
+      $('.err').hide();
+      $('.attention_value').show(); 
+      this.log_responses();
+    } else if (this.stateResponse < "50") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
-        $('.attention').show(); 
+        $('.attention_value').hide(); 
+        $('.attention_state').show(); 
         this.log_responses();
       } else {
         // log response
@@ -106,7 +115,8 @@ function make_slides(f) {
     start: function() {
       // hide error message
       $('.err').hide();
-      $('.attention').hide(); // TODO : add error messages for the other 2 sliders
+      $('.attention_state').hide();
+      $('.attention_value').hide();
       $(".state").hide(); 
       $(".positive").hide();
       $(".honest").hide();
@@ -154,16 +164,24 @@ function make_slides(f) {
 
       // read in the value of the selected radio button
       this.stateResponse = $("#example2StateSlider").val();
+      this.valueResponse = $("#example2ValueSlider").val();
+
       // check whether the participant responded to every question
       if (stateStatus.className != 'slider visibleslider' || valueStatus.className != 'slider visibleslider' || honestStatus.className != 'slider visibleslider' || positiveStatus.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
       // TODO : attention check is not working for example 1 & 2
       // check whether the participant selected a reasonable value 
-    } else if (this.stateResponse < "30") {
+    } else if (this.valueResponse < "50") {
+      // participant gave non-reasonable response --> show error message
+      $('.err').hide();
+      $('.attention_value').show(); 
+      this.log_responses();
+    } else if (this.stateResponse < "50") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
-        $('.attention').show(); 
+        $('.attention_value').hide(); 
+        $('.attention_state').show(); 
         this.log_responses();
     } else {
         // log response
