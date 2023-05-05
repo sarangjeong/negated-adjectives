@@ -98,11 +98,24 @@ function make_slides(f) {
       // this data will be submitted at the end of the experiment
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
-        "id": "example1",
+        "stimulusType": "example1",
         "responseState": $("#example1StateSlider").val(),
         "responseValue": $("#example1ValueSlider").val(),
         "responseHonest": $("#example1HonestSlider").val(),
-        "responsePositive": $("#example1PositiveSlider").val()
+        "responsePositive": $("#example1PositiveSlider").val(),
+        // record more data
+        "speakerName": "Jane",
+        "speakerGender": "F", 
+        "adjective": "quiet",
+        "adjectivePair": "talkative-quiet",
+        "polarity": "negative",
+        "negation": "1",
+        // record more data so that I read off of json what item it is
+        "sentence": "\"My date wasn't quiet.\"", 
+        "targetType": "human",
+        "item": "date",
+        "desired": "quiet",
+        "value": "flipped"
       });
     },
   });
@@ -196,11 +209,24 @@ function make_slides(f) {
       // this data will be submitted at the end of the experiment
       exp.data_trials.push({
         "slide_number_in_experiment": exp.phase,
-        "id": "example2",
+        "stimulusType": "example2",
         "responseState": $("#example2StateSlider").val(),
         "responseValue": $("#example2ValueSlider").val(),
         "responseHonest": $("#example2HonestSlider").val(),
-        "responsePositive": $("#example2PositiveSlider").val()
+        "responsePositive": $("#example2PositiveSlider").val(),
+        // record more data
+        "speakerName": "Tom",
+        "speakerGender": "M", 
+        "adjective": "talkative",
+        "adjectivePair": "talkative-quiet",
+        "polarity": "positive",
+        "negation": "0",
+        // record more data so that I read off of json what item it is
+        "sentence": "\"My date was talkative.\"", 
+        "targetType": "human",
+        "item": "date",
+        "desired": "talkative",
+        "value": "normal"
       });
     },
   });
