@@ -401,10 +401,9 @@ function make_slides(f) {
       if (this.stim.type == "control") {
         exp.data_trials.push({
           "slide_number_in_experiment": exp.phase,
-          // "id": this.stim.TGrep,
           "stimulusType": this.stim.type,
-          "responseState": $("#q1Slider").val(),
-          "responseValue": $("#q2Slider").val(),
+          "responseState": $("#q1Slider").val(), // difference
+          "responseValue": $("#q2Slider").val(), // difference
           "responseHonest": $("#q3Slider").val(),
           "responsePositive": $("#q4Slider").val(),
           "speakerName": this.stim.name,
@@ -412,16 +411,22 @@ function make_slides(f) {
           "adjective": this.stim.adjective,
           "adjective_pair": this.stim.adjective_pair,
           "polarity": this.stim.polarity,
-          "negation": this.stim.negation
+          "negation": this.stim.negation,
+          // TODO: record more data so that I read off of json what item it is
+          "sentence": this.stim.sentence, 
+          "target_type": this.stim.target_type,
+          "item": this.stim.item,
+          "desired": this.stim.desired, 
+          "value": this.stim.value, 
+          "state": this.stim.state 
         }); 
       } 
       else {
         exp.data_trials.push({
           "slide_number_in_experiment": exp.phase,
-          // "id": this.stim.TGrep,
           "stimulusType": this.stim.type,
-          "responseValue": $("#q1Slider").val(),
-          "responseState": $("#q2Slider").val(),
+          "responseValue": $("#q1Slider").val(), // difference
+          "responseState": $("#q2Slider").val(), // difference
           "responseHonest": $("#q3Slider").val(),
           "responsePositive": $("#q4Slider").val(),
           "speakerName": this.stim.name,
@@ -429,7 +434,14 @@ function make_slides(f) {
           "adjective": this.stim.adjective,
           "adjective_pair": this.stim.adjective_pair,
           "polarity": this.stim.polarity,
-          "negation": this.stim.negation
+          "negation": this.stim.negation,
+          // record more data so that I read off of json what item it is
+          "sentence": this.stim.sentence, 
+          "target_type": this.stim.target_type,
+          "item": this.stim.item,
+          "desired": this.stim.desired,
+          "value": this.stim.value,
+          "state": this.stim.state 
         }); 
       }
     },

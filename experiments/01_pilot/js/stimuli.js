@@ -288,7 +288,10 @@ class Stim {
             "sentence": this.sentence,
             "question": this.question,
             "name": this.name,
-            "gender": this.gender
+            "gender": this.gender,
+            // record more data so that I read off of json what item it is
+            "item": this.target, 
+            "desired": this.desired
         }
     }
 
