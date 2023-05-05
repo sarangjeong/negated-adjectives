@@ -144,6 +144,8 @@ function make_slides(f) {
 
     // this is executed when the slide is shown
     start: function() {
+      // scroll to top
+      window.scrollTo(0,0)
       // hide error message
       $('.err').hide();
       $('.attention_state').hide();
@@ -270,6 +272,8 @@ function make_slides(f) {
   slides.startExp = slide({
     name: "startExp",
     start: function() {
+      // scroll to top
+      window.scrollTo(0,0)
     },
     button: function() {
       exp.go(); //use exp.go() if and only if there is no "present" data.
@@ -303,7 +307,10 @@ function make_slides(f) {
       // (by default, the selection of the radio persists across trials)
       // $("input[name='number']:checked").prop("checked", false);
       // $("#check-strange").prop("checked", false);
-
+      
+      // scroll to top
+      window.scrollTo(0,0)
+      
       // reset sliders
       $("input[name='number']:checked").prop("checked", false);
       
@@ -510,6 +517,10 @@ function make_slides(f) {
   // slide to collect subject information
   slides.subj_info = slide({
     name: "subj_info",
+    start: function() {
+      // scroll to top
+      window.scrollTo(0,0)
+    },
     submit: function(e) {
       exp.subj_data = {
         language: $("#language").val(),
@@ -529,6 +540,8 @@ function make_slides(f) {
   slides.thanks = slide({
     name: "thanks",
     start: function() {
+      // scroll to top
+      window.scrollTo(0,0)
       exp.data = {
         "trials": exp.data_trials,
         "catch_trials": exp.catch_trials,
