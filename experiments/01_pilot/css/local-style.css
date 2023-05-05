@@ -79,6 +79,7 @@ visibility: hidden;
 
 .state, .value, .intention, .honest, .positive, .endpoint{
     font-weight: lighter;
+    font-style: italic;
 }
 .row {
     padding-bottom: .5em;
