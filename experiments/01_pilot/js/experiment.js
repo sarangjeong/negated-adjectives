@@ -46,18 +46,27 @@ function make_slides(f) {
         $(".intention").show();
         $(".honest").show();
         $(".positive").show();
+        // don't allow modifying slider
+        var slider = document.getElementById("example1StateSlider");
+        slider.disabled = true;         
       };
     },
 
     honestOnClick : function() {
       if ($("#example1HonestSlider").val() != 50); {
         $('#example1HonestSlider').addClass('visibleslider')
+        // don't allow modifying slider
+        var slider = document.getElementById("example1HonestSlider");
+        slider.disabled = true;         
       };
     },
 
     positiveOnClick : function() {
       if ($("#example1PositiveSlider").val() != 50); {
         $('#example1PositiveSlider').addClass('visibleslider')
+        // don't allow modifying slider
+        var slider = document.getElementById("example1PositiveSlider");
+        slider.disabled = true; 
       };
     },
 
@@ -81,12 +90,18 @@ function make_slides(f) {
       // participant gave non-reasonable response --> show error message
       $('.err').hide();
       $('.attention_value').show(); 
+      // re-allow modifying slider
+      var slider = document.getElementById("example1ValueSlider");
+      slider.disabled = false; 
       this.log_responses();
     } else if (this.stateResponse < "50") {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention_value').hide(); 
         $('.attention_state').show(); 
+        // re-allow modifying slider
+        var slider = document.getElementById("example1StateSlider");
+        slider.disabled = false; 
         this.log_responses();
       } else {
         // log response
