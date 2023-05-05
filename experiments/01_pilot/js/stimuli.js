@@ -274,7 +274,7 @@ class Stim {
     
     toDict() {
         return {
-            "type": "main_stimuli",
+            "type": "main_stimulus",
             "adjective": this.adjective,
             "adjective_pair": this.adjective_pair,
             "polarity": this.polarity,
