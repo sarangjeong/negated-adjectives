@@ -231,7 +231,6 @@ function makeStimList() {
     }
     stims = stims.concat(controls);
     stims = _.shuffle(stims);
-    console.log(stims)
     return stims
   }
 
@@ -347,7 +346,7 @@ class Stim {
             this.target = 'speech'
             this.subject = 'Her ' + this.target
             this.common_context = `A visitor is giving a speech at ${this.name}'s company. ${this.name} is `
-            this.context2 = `After the speech, ${this.name} catches up with ${possessive} colleague, who ${nominative} previously told about ${possessive} expectations for the speech: ${this.name} says: `
+            this.context2 = `After the speech, ${this.name} catches up with ${possessive} colleague, who ${nominative} previously told about ${possessive} expectations for the speech. ${this.name} says: `
         // TRAIL
         } else if (adjective_pair == 'long-short' && target_type == 'thing') {
             this.target = 'trail'

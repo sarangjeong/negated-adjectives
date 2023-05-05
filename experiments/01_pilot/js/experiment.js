@@ -354,9 +354,7 @@ function make_slides(f) {
       $("#adjNeg1").html(adjectives[1]); 
       $("#adjPos2").html(adjectives[0]);
       $("#adjNeg2").html(adjectives[1]); 
-      console.log(stim.type)
       if (stim.type == "control") {
-        console.log("This is control")
         $("#q1").html(stim.question.state); 
         $("#q2").html(stim.question.value);
       } else {
