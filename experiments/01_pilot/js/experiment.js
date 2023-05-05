@@ -162,6 +162,9 @@ function make_slides(f) {
         $(".context2").show();
         $(".sentence").show();
         $(".state").show();
+        // don't allow modifying slider
+        var slider = document.getElementById("example2ValueSlider");
+        slider.disabled = true;         
       };
     },
 
@@ -171,18 +174,27 @@ function make_slides(f) {
         $(".intention").show();
         $(".honest").show();
         $(".positive").show();
+        // don't allow modifying slider
+        var slider = document.getElementById("example2StateSlider");
+        slider.disabled = true; 
       };
     },
 
     honestOnClick : function() {
       if ($("#example2HonestSlider").val() != 50); {
         $('#example2HonestSlider').addClass('visibleslider')
+        // don't allow modifying slider
+        var slider = document.getElementById("example2HonestSlider");
+        slider.disabled = true; 
       };
     },
 
     positiveOnClick : function() {
       if ($("#example2PositiveSlider").val() != 50); {
         $('#example2PositiveSlider').addClass('visibleslider')
+        // don't allow modifying slider
+        var slider = document.getElementById("example2PositiveSlider");
+        slider.disabled = true; 
       };
     },
     
@@ -201,18 +213,23 @@ function make_slides(f) {
       if (stateStatus.className != 'slider visibleslider' || valueStatus.className != 'slider visibleslider' || honestStatus.className != 'slider visibleslider' || positiveStatus.className != 'slider visibleslider') { 
         $('.err').show();
         this.log_responses();
-      // TODO : attention check is not working for example 1 & 2
       // check whether the participant selected a reasonable value 
     } else if (this.valueResponse < 50) {
       // participant gave non-reasonable response --> show error message
       $('.err').hide();
       $('.attention_value').show(); 
+      // re-allow modifying slider
+      var slider = document.getElementById("example2ValueSlider");
+      slider.disabled = false; 
       this.log_responses();
     } else if (this.stateResponse < 50) {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention_value').hide(); 
         $('.attention_state').show(); 
+        // re-allow modifying slider
+        var slider = document.getElementById("example2StateSlider");
+        slider.disabled = false; 
         this.log_responses();
     } else {
         // log response
