@@ -156,21 +156,21 @@ function make_slides(f) {
       $(".intention").hide();
     },
 
-    stateOnClick : function() {
-      if ($("#example2StateSlider").val() != 50); {
-        $('#example2StateSlider').addClass('visibleslider')
-        $(".intention").show();
-        $(".honest").show();
-        $(".positive").show();
-      };
-    },
-
     valueOnClick : function() {
       if ($("#example2ValueSlider").val() != 50); {
         $('#example2ValueSlider').addClass('visibleslider')
         $(".context2").show();
         $(".sentence").show();
         $(".state").show();
+      };
+    },
+
+    stateOnClick : function() {
+      if ($("#example2StateSlider").val() != 50); {
+        $('#example2StateSlider').addClass('visibleslider')
+        $(".intention").show();
+        $(".honest").show();
+        $(".positive").show();
       };
     },
 
