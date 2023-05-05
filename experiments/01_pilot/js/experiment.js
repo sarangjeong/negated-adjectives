@@ -86,7 +86,7 @@ function make_slides(f) {
         $('.err').show();
         this.log_responses();
       // check whether the participant selected a reasonable value 
-    } else if (this.valueResponse > "50") {
+    } else if (this.valueResponse > 50) {
       // participant gave non-reasonable response --> show error message
       $('.err').hide();
       $('.attention_value').show(); 
@@ -94,7 +94,7 @@ function make_slides(f) {
       var slider = document.getElementById("example1ValueSlider");
       slider.disabled = false; 
       this.log_responses();
-    } else if (this.stateResponse < "50") {
+    } else if (this.stateResponse < 50) {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention_value').hide(); 
@@ -203,12 +203,12 @@ function make_slides(f) {
         this.log_responses();
       // TODO : attention check is not working for example 1 & 2
       // check whether the participant selected a reasonable value 
-    } else if (this.valueResponse < "50") {
+    } else if (this.valueResponse < 50) {
       // participant gave non-reasonable response --> show error message
       $('.err').hide();
       $('.attention_value').show(); 
       this.log_responses();
-    } else if (this.stateResponse < "50") {
+    } else if (this.stateResponse < 50) {
         // participant gave non-reasonable response --> show error message
         $('.err').hide();
         $('.attention_value').hide(); 
@@ -290,10 +290,10 @@ function make_slides(f) {
       // reset sliders
       $("input[name='number']:checked").prop("checked", false);
       
-      document.getElementById("q1Slider").value = "50";
-      document.getElementById("q2Slider").value = "50";
-      document.getElementById("q3Slider").value = "50";
-      document.getElementById("q4Slider").value = "50";
+      document.getElementById("q1Slider").value = 50;
+      document.getElementById("q2Slider").value = 50;
+      document.getElementById("q3Slider").value = 50;
+      document.getElementById("q4Slider").value = 50;
       // TODO : reset disabled more efficiently
       document.getElementById("q1Slider").disabled = false;
       document.getElementById("q2Slider").disabled = false;
