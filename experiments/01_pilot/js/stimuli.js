@@ -245,10 +245,12 @@ class Stim {
                 "positive": ""
             }
         }
+        this.desired = ""
 
         // Make stim
         this.setPerson()
         this.setAttributeDependentOnAdjective(this.adjective)
+        this.setDesired(this.adjective_pair, this.value)
         this.setAttributeDependentOnAdjectivePairAndTargetType(this.adjective_pair, this.target_type)
         this.setPolarity(this.adjective, this.adjective_pair)
 
@@ -350,6 +352,15 @@ class Stim {
             this.subject = 'The '+ this.target
             this.common_context = `${this.name} and ${possessive} friends are planning a picnic for Saturday. ${capitalize(nominative)} is `
             this.context2 = `After the weekend, ${this.name} sees ${possessive} colleague, who ${nominative} told about ${possessive} feelings about the picnic. ${this.name} says: `
+        }
+    }
+
+    setDesired(adjective_pair, value) {
+        const antonyms = adjective_pair.split("-");
+        if (value == "normal") {
+            this.desired = antonyms[0]
+        } else if (value == "flipped") {
+            this.desired = antonyms[1]
         }
     }
 
