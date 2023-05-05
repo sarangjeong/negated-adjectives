@@ -28,21 +28,24 @@ function make_slides(f) {
       $(".intention").hide();
     },
 
-    stateOnClick : function() {
-      if ($("#example1StateSlider").val() != 50); {
-        $('#example1StateSlider').addClass('visibleslider')
-        $(".intention").show();
-        $(".honest").show();
-        $(".positive").show();
-      };
-    },
-
     valueOnClick : function() {
       if ($("#example1ValueSlider").val() != 50); {
         $('#example1ValueSlider').addClass('visibleslider')
         $(".context2").show();
         $(".sentence").show();
         $(".state").show();
+        // don't allow modifying slider
+        var slider = document.getElementById("example1ValueSlider");
+        slider.disabled = true; 
+      };
+    },
+
+    stateOnClick : function() {
+      if ($("#example1StateSlider").val() != 50); {
+        $('#example1StateSlider').addClass('visibleslider')
+        $(".intention").show();
+        $(".honest").show();
+        $(".positive").show();
       };
     },
 
@@ -345,6 +348,22 @@ function make_slides(f) {
 
     // show questions sequentially
     
+    q1ThumbVisible : function() {
+      if ($("#q1Slider").val() != 50); {
+        $('#q1Slider').addClass('visibleslider')
+
+        // don't allow modifying slider
+        var slider = document.getElementById("q1Slider");
+        slider.disabled = true; 
+
+        $("#q2").show();
+        $("#q2Slider").show();
+        $("#endpoint2-1").show();
+        $("#endpoint2-2").show();
+        $("#context2").show();
+        $("#sentence").show();
+      };
+    },
 
     q2ThumbVisible : function() {
       if ($("#q2Slider").val() != 50); {
@@ -363,23 +382,6 @@ function make_slides(f) {
         $("#q4Slider").show();  
         $("#endpoint4-1").show();
         $("#endpoint4-2").show();
-      };
-    },
-
-    q1ThumbVisible : function() {
-      if ($("#q1Slider").val() != 50); {
-        $('#q1Slider').addClass('visibleslider')
-
-        // don't allow modifying slider
-        var slider = document.getElementById("q1Slider");
-        slider.disabled = true; 
-
-        $("#q2").show();
-        $("#q2Slider").show();
-        $("#endpoint2-1").show();
-        $("#endpoint2-2").show();
-        $("#context2").show();
-        $("#sentence").show();
       };
     },
 
