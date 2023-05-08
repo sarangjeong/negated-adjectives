@@ -328,11 +328,15 @@ class Stim {
     setAttributeDependentOnAdjectivePairAndTargetType(adjective_pair, target_type) {
         let nominative, accusative, possessive
         [nominative, accusative, possessive] = this.getPronouns(this.gender)
+
+        let nominative2, accusative2, possessive2
+        [nominative2, accusative2, possessive2] = this.getPronouns(this.gender2)        
+        
         // TODO: the third party's name & gender?
         // DRIVER
         if (adjective_pair == 'fast-slow' && target_type == 'human') {
             this.target = 'driver'
-            this.subject = 'His driving'
+            this.subject = `${capitalize(possessive2)} driving`
             this.common_context = `${this.name} is taking an Uber to the airport. ${capitalize(nominative)} wants the driver to drive `
             this.context2 = `Once ${nominative}'s made it to the gate, ${nominative} calls ${possessive} colleague, who ${nominative} was texting about ${possessive} issue during the Uber ride. ${this.name} says: `
         // ZEBRA
@@ -344,7 +348,7 @@ class Stim {
         // SPEECH
         } else if (adjective_pair == 'long-short' && target_type == 'human') {
             this.target = 'speech'
-            this.subject = 'Her ' + this.target
+            this.subject = `${capitalize(possessive2)} ${this.target}`
             this.common_context = `A visitor is giving a speech at ${this.name}'s company. ${this.name} is `
             this.context2 = `After the speech, ${this.name} catches up with ${possessive} colleague, who ${nominative} previously told about ${possessive} expectations for the speech. ${this.name} says: `
         // TRAIL
@@ -356,8 +360,8 @@ class Stim {
         // PARTY
         } else if (adjective_pair == 'big-small' && target_type == 'human') {
             this.target = 'party'
-            this.subject = 'His ' + this.target
-            this.common_context = `James invites ${this.name} to his party. James tells ${this.name} that he invited `
+            this.subject = `${capitalize(possessive2)} ${this.target}`
+            this.common_context = `${this.name2} invites ${this.name} to ${possessive2} party. ${this.name2} tells ${this.name} that ${nominative2} invited `
             this.context2 = `The next day, ${this.name} calls ${possessive} colleague, with whom ${nominative} shared ${possessive} expectations about the party. ${this.name} says: `
         // PLANT
         } else if (adjective_pair == 'big-small' && target_type == 'thing') {
@@ -368,9 +372,9 @@ class Stim {
         // PRESENTATION
         } else if (adjective_pair == 'good-bad' && target_type == 'human') {
             this.target = 'presentation'
-            this.subject = 'His ' + this.target
-            this.common_context = `Tim, an intern who recently joined ${this.name}'s team, is giving a big presentation. ${this.name} `
-            this.context2 = `After Tim's presentation, ${this.name} meets ${possessive} colleague, who ${nominative} told about ${possessive} hopes for Tim's presentation. ${this.name} says: `
+            this.subject = `${capitalize(possessive2)} ${this.target}`
+            this.common_context = `${this.name2}, an intern who recently joined ${this.name}'s team, is giving a big presentation. ${this.name} `
+            this.context2 = `After ${this.name2}'s presentation, ${this.name} meets ${possessive} colleague, who ${nominative} told about ${possessive} hopes for ${this.name2}'s presentation. ${this.name} says: `
         // WEATHER
         } else if (adjective_pair == 'good-bad' && target_type == 'thing') {
             this.target = 'weather'
@@ -392,6 +396,8 @@ class Stim {
     setValueContext(adjective_pair, target_type, value) {
         let nominative, accusative, possessive
         [nominative, accusative, possessive] = this.getPronouns(this.gender)
+        let nominative2, accusative2, possessive2
+        [nominative2, accusative2, possessive2] = this.getPronouns(this.gender2)
         // DRIVER
         if (target_type == "human" && adjective_pair == "fast-slow" && value == "normal") {
             this.value_context = `fast because ${nominative} is late for a flight. `
@@ -424,9 +430,9 @@ class Stim {
             this.value_context = `small so that it fits the pot. `
         // PRESENTATION
         } else if (target_type == "human" && adjective_pair == "good-bad" && value == "normal") {
-            this.value_context = `likes Tim and wants him to give a good presentation so Tim can get a full-time offer. `
+            this.value_context = `likes ${this.name2} and wants ${accusative2} to give a good presentation so ${this.name2} can get a full-time offer. `
         } else if (target_type == "human" && adjective_pair == "good-bad" && value == "flipped") {
-            this.value_context = `dislikes Tim and wants him to give a bad presentation so Tim won't get a full-time offer. ` 
+            this.value_context = `dislikes ${this.name2} and wants ${accusative2} to give a bad presentation so ${this.name2} won't get a full-time offer. ` 
         // WEATHER
         } else if (target_type == "thing" && adjective_pair == "good-bad" && value == "normal") {
             this.value_context = `really looking forward to it, so ${nominative} wants the weather to be good. `
@@ -549,6 +555,8 @@ class Stim {
               ]);
         this.name = names[0].name
         this.gender = names[0].gender
+        this.name2 = names[1].name
+        this.gender2 = names[1].gender
     }
 
     setAttributeDependentOnAdjective(adjective) {
