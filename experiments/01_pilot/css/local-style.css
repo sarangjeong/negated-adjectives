@@ -85,6 +85,13 @@ visibility: hidden;
     padding-bottom: .5em;
 }
 
+.red {
+    color: red;
+}
+
+.bold {
+    font-weight: bold;
+}
 
 .tr {
   padding: 0;
