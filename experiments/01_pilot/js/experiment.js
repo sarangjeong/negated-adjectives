@@ -16,6 +16,7 @@ function make_slides(f) {
 
     // this is executed when the slide is shown
     start: function() {
+      window.scrollTo(0,0)
       // hide error message
       $('.err').hide(); 
       $('.attention_state').hide();
