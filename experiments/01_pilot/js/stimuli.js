@@ -240,7 +240,7 @@ function capitalize(string) {
 }
 
 class Person {
-    constructor() {
+    constructor(gender) {
 
         var names = _.shuffle([
             {"name":"James", "gender":"M"},
@@ -344,8 +344,14 @@ class Person {
             {"name":"Julie", "gender":"F"},
             {"name":"Emma", "gender":"F"}
           ]);
-        this.name = names[0].name
-        this.gender = names[0].gender
+
+        for (let i = 0; i < names.length; i++) {
+            if (gender == names[i].gender) {
+                this.name = names[i].name
+                this.gender = names[i].gender
+                break
+            }
+        }
 
         if (this.gender == "F") {
             this.nominative = "she"
@@ -549,8 +555,10 @@ class Stim {
     }
 
     setPerson() {
-        this.person1 = new Person()
-        this.person2 = new Person()
+        var genders = ["M", "F"]
+        genders = _.shuffle(genders)
+        this.person1 = new Person(genders[0])
+        this.person2 = new Person(genders[1])
     }
 
     setAttributeDependentOnAdjective(adjective) {
