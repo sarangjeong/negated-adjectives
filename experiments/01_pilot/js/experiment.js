@@ -472,13 +472,15 @@ function make_slides(f) {
           "responseValue": $("#q2Slider").val(), // difference
           "responseHonest": $("#q3Slider").val(),
           "responsePositive": $("#q4Slider").val(),
-          "speakerName": this.stim.name,
-          "speakerGender": this.stim.gender, 
+          "speakerName": this.stim.speaker_name,
+          "speakerGender": this.stim.speaker_gender,
+          "listenerName": this.stim.listener_name,
+          "listenerGender": this.stim.listener_gender, 
           "adjective": this.stim.adjective,
           "adjectivePair": this.stim.adjective_pair,
           "polarity": this.stim.polarity,
           "negation": this.stim.negation,
-          // TODO: record more data so that I read off of json what item it is
+          // record more data so that I read off of json what item it is
           "sentence": this.stim.sentence, 
           "targetType": this.stim.target_type,
           "item": this.stim.item,
@@ -495,8 +497,10 @@ function make_slides(f) {
           "responseState": $("#q2Slider").val(), // difference
           "responseHonest": $("#q3Slider").val(),
           "responsePositive": $("#q4Slider").val(),
-          "speakerName": this.stim.name,
-          "speakerGender": this.stim.gender, 
+          "speakerName": this.stim.speaker_name,
+          "speakerGender": this.stim.speaker_gender,
+          "entityName": this.stim.entity_name,
+          "entityGender": this.stim.entity_gender, 
           "adjective": this.stim.adjective,
           "adjectivePair": this.stim.adjective_pair,
           "polarity": this.stim.polarity,

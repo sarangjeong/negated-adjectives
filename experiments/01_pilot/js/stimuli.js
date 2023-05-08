@@ -41,8 +41,8 @@ controls = [
         "listener_name": "Nathaniel",
         "listener_gender": "M",
         "item": "cookie",
-        "name": "Sarah",
-        "gender": "F"
+        "speaker_name": "Sarah",
+        "speaker_gender": "F"
     }, {
         "type": "control",
         "adjective": "gross",
@@ -66,8 +66,8 @@ controls = [
         "listener_name": "Christina",
         "listener_gender": "F",
         "item": "scone",
-        "name": "Ethan",
-        "gender": "M"
+        "speaker_name": "Ethan",
+        "speaker_gender": "M"
     }, {
         "type": "control",
         "adjective": "tasty",
@@ -91,8 +91,8 @@ controls = [
         "listener_name": "Paul",
         "listener_gender": "M",
         "item": "cupcake",
-        "name": "Dora",
-        "gender": "F"
+        "speaker_name": "Dora",
+        "speaker_gender": "F"
     }, {
         "type": "control",
         "adjective": "gross",
@@ -116,8 +116,8 @@ controls = [
         "listener_name": "Penny",
         "listener_gender": "F",
         "item": "bread",
-        "name": "Robert",
-        "gender": "M"
+        "speaker_name": "Robert",
+        "speaker_gender": "M"
     }, { 
         "type": "control",
         "adjective": "entertaining",
@@ -141,8 +141,8 @@ controls = [
         "listener_name": "Emily",
         "listener_gender": "F",
         "item": "clip",
-        "name": "George",
-        "gender": "M"
+        "speaker_name": "George",
+        "speaker_gender": "M"
     }, { 
         "type": "control",
         "adjective": "boring",
@@ -166,8 +166,8 @@ controls = [
         "listener_name": "Eric",
         "listener_gender": "M",
         "item": "film",
-        "name": "Lucy",
-        "gender": "F"
+        "speaker_name": "Lucy",
+        "speaker_gender": "F"
     }, { 
         "type": "control",
         "adjective": "entertaining",
@@ -191,8 +191,8 @@ controls = [
         "listener_name": "Samantha",
         "listener_gender": "F",
         "item": "story",
-        "name": "Mark",
-        "gender": "M"
+        "speaker_name": "Mark",
+        "speaker_gender": "M"
     }, { 
         "type": "control",
         "adjective": "boring",
@@ -216,8 +216,8 @@ controls = [
         "listener_name": "Bruce",
         "listener_gender": "M",
         "item": "cartoon",
-        "name": "Caroline",
-        "gender": "F"
+        "speaker_name": "Caroline",
+        "speaker_gender": "F"
     }, 
 ]
 
@@ -431,8 +431,10 @@ class Stim {
             "context2": this.context2,
             "sentence": this.sentence,
             "question": this.question,
-            "name": this.person1.name,
-            "gender": this.person1.gender,
+            "speaker_name": this.person1.name,
+            "speaker_gender": this.person1.gender,
+            "entity_name": this.person2.name,
+            "entity_gender": this.person2.gender,
             // record more data so that I read off of json what item it is
             "item": this.target, 
             "desired": this.desired
@@ -559,6 +561,10 @@ class Stim {
         genders = _.shuffle(genders)
         this.person1 = new Person(genders[0])
         this.person2 = new Person(genders[1])
+        if (this.target_type == "thing") {
+            this.person2.name = null;
+            this.person2.gender = null;
+        }
     }
 
     setAttributeDependentOnAdjective(adjective) {
