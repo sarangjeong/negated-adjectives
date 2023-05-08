@@ -408,7 +408,7 @@ class Stim {
         this.setValueContext(this.adjective_pair, this.target_type, this.value)
         this.context1 = this.common_context + this.value_context
 
-        this.question.state = `Based on what ${this.person1.name} said, make your best guess: What was the ${this.property} of the ${this.target}?`
+        this.question.state = `Based on what ${this.person1.name} said, make your best guess: What was the ${this.target} like?`
         
         // TODO : remove this.property? (maybe not, becaus it's used in state question)
         // TODO : does it sound natural? "What does Jane want the driver to be like?"
