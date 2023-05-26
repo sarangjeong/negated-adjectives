@@ -10,7 +10,6 @@ cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00",
 
 # load the main data
 d = read_csv("../../../data/01_entityType_valueScale/negated_adjectives-merged-english-attention.csv")
-View(d)
 nrow(d)
 
 # load information about contextual features and merge into dataset
@@ -41,26 +40,86 @@ d = d %>%
   mutate(weightedResponseHonest = responseHonest / (responseHonest + responsePositive)) %>%
   mutate(weightedResponsePositive = responsePositive / (responseHonest + responsePositive))
 
+# adjust responseValue to -1 ~ 1
+d = d %>% 
+  mutate(adjustedResponseValue = (responseValue - 0.5) * 2 )
+View(d)
+
+# change independent variables into factors
+d$negation = as.factor(as.character(d$negation))
+d$polarity = as.factor(as.character(d$polarity))
+d$targetType = as.factor(as.character(d$targetType))
+d$value = as.factor(as.character(d$value))
+
+# change participant & adjective into factors too??
+d$workerid = as.factor(as.character(d$workerid))
+d$adjective = as.factor(as.character(d$adjective))
+
+# change baselines
+d$polarity <- factor(d$polarity, levels = c("positive", "negative"))
+d$targetType <- factor(d$targetType, levels = c("thing", "human"))
+d$value <- factor(d$value, levels = c("normal", "flipped"))
+d$negation <- factor(d$negation, levels = c("0", "1"))
+contrasts(d$negation)
+contrasts(d$polarity)
 
 
 # correlation between intention and state
 
+# only negated positive in normal context
 d_normal_negated_positive = d %>%
   filter(value=="normal" & negation=="1" & polarity=="positive") %>%
   droplevels()
-View(d_normal_negated_positive)
 
+# effect of relative weight of positivity
 plot(d_normal_negated_positive$weightedResponsePositive, d_normal_negated_positive$responseState)
+# effect of relative weight of hoensty
 plot(d_normal_negated_positive$weightedResponseHonest, d_normal_negated_positive$responseState)
-plot(d_normal_negated_positive$responsePositive, d_normal_negated_positive$responseState)
-plot(d_normal_negated_positive$responseHonest, d_normal_negated_positive$responseState)
+# effect of raw weight of positivity
+# plot(d_normal_negated_positive$responsePositive, d_normal_negated_positive$responseState)
+# effect of raw weight of hoensty
+# plot(d_normal_negated_positive$responseHonest, d_normal_negated_positive$responseState)
 
-
-
-
+# relative positivity has weak POSITIVE effect
 cor.test(d_normal_negated_positive$weightedResponsePositive, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
-cor.test(d_normal_negated_positive$weightedResponseHonest, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
-cor.test(d_normal_negated_positive$responsePositive, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+# relative honesty (redundant)
+# cor.test(d_normal_negated_positive$weightedResponseHonest, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+# raw positivity is insignificant
+# cor.test(d_normal_negated_positive$responsePositive, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+# raw honesty has weak NEGATIVE effect
+cor.test(d_normal_negated_positive$responseHonest, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+
+
+# only positive in normal context
+d_normal_positive = d %>%
+  filter(value=="normal" & polarity=="positive") %>%
+  droplevels()
+
+# effect of negation on relative weight of positivity
+plot(d_normal_positive$negation, d_normal_positive$weightedResponsePositive)
+# effect of negation on relative weight of hoensty
+plot(d_normal_positive$negation, d_normal_positive$weightedResponseHonest)
+# effect of negation on raw positivity
+plot(d_normal_positive$negation, d_normal_positive$responsePositive)
+# effect of negation on raw hoensty
+plot(d_normal_positive$negation, d_normal_positive$responseHonest)
+
+
+
+# only normal context
+d_normal = d %>%
+  filter(value=="normal") %>%
+  droplevels()
+
+# TODO: 
+
+# relative positivity has weak POSITIVE effect
+cor.test(d_normal_negated_positive$weightedResponsePositive, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+# relative honesty (redundant)
+# cor.test(d_normal_negated_positive$weightedResponseHonest, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+# raw positivity is insignificant
+# cor.test(d_normal_negated_positive$responsePositive, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
+# raw honesty has weak NEGATIVE effect
 cor.test(d_normal_negated_positive$responseHonest, d_normal_negated_positive$responseState, method=c("pearson", "kendall", "spearman"))
 
 
@@ -137,6 +196,57 @@ ggplot(agr, aes(x=polarity, y=mean, fill=negation))+
   ylab("Mean state rating") +
   facet_grid(targetType~value)
 ggsave(file="../graphs/full.png",width=6,height=4)
+
+
+
+# Is responseValue a negative value in flipped context?
+agr_value = d %>% 
+  group_by(value) %>% 
+  summarise(mean = mean(responseValue),
+            CILow = ci.low(responseValue),
+            CIHigh = ci.high(responseValue)) %>%
+  ungroup() %>%
+  mutate(YMin = mean - CILow,
+         YMax = mean + CIHigh, 
+         #negation = fct_recode(negation, "not adj" = "1", "adj" = "0"),
+         #polarity = fct_recode(polarity, "good" = "positive", "bad" = "negative")
+  )
+
+ggplot(agr_value, aes(x=value, y=mean, fill=value))+ #fill=negation
+  geom_bar(stat="identity", position=dodge) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  scale_fill_manual(values=cbPalette, name="Value context") +
+  xlab("Value context") +
+  ylab("Mean value rating")
+  #facet_grid(.~targetType)
+
+
+# What affects relative weight of positivity? value = normal, (negation = 1)
+agr_positivity = d %>% 
+  filter(value=="normal") %>%
+  droplevels() %>%
+  group_by(polarity, negation, targetType) %>% 
+  summarise(mean = mean(weightedResponsePositive),
+            CILow = ci.low(weightedResponsePositive),
+            CIHigh = ci.high(weightedResponsePositive)) %>%
+  ungroup() %>%
+  mutate(YMin = mean - CILow,
+         YMax = mean + CIHigh, 
+         negation = fct_recode(negation, "not adj" = "1", "adj" = "0"),
+         #polarity = fct_recode(polarity, "good" = "positive", "bad" = "negative")
+  )
+
+View(agr_positivity)
+
+ggplot(agr_positivity, aes(x=negation, y=mean, fill=negation))+
+  geom_bar(stat="identity", position=dodge) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  scale_fill_manual(values=cbPalette, name="Adjectival form") +
+  xlab("Adjectival polarity") +
+  ylab("Mean state rating") +
+  facet_grid(.~polarity)
+
+
 
 # negative strengthening plot
 
@@ -413,23 +523,6 @@ ggsave(file="../graphs/means_strengthSome.pdf",width=4,height=3.2)
 
 # To run the regression reported in Degen 2015:
 
-# change independent variables into factors
-d$negation = as.factor(as.character(d$negation))
-d$polarity = as.factor(as.character(d$polarity))
-d$targetType = as.factor(as.character(d$targetType))
-d$value = as.factor(as.character(d$value))
-
-# change participant & adjective into factors too??
-d$workerid = as.factor(as.character(d$workerid))
-d$adjective = as.factor(as.character(d$adjective))
-
-# change baselines
-d$polarity <- factor(d$polarity, levels = c("positive", "negative"))
-d$targetType <- factor(d$targetType, levels = c("thing", "human"))
-d$value <- factor(d$value, levels = c("normal", "flipped"))
-d$negation <- factor(d$negation, levels = c("0", "1"))
-contrasts(d$negation)
-contrasts(d$polarity)
 
 # first mean-center variables for interpretability
 # TODO : do I need to do this? I have binary varibles only 
