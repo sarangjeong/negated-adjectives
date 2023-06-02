@@ -1,12 +1,85 @@
 library(tidyverse)
 library(lme4)
 library(lmerTest)
+library(jsonlite)
+library(rwebppl)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("helpers.R")
 theme_set(theme_bw())
 # color-blind-friendly palette
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7") 
+
+# load model 
+code <- read_file("main_model")
+
+# make a function
+eval_webppl_main <- function(command) {
+  webppl(paste(code,command,sep="\n"))
+}
+
+# running a listener/speaker model (arguments defined as in main_model)
+listener_twentyfive_a1.0_b0.5_allimp_allhalos_lower_costdiff <- eval_webppl_main("pragmaticListener('twenty-five',1.0,0.5,allimp,allhalos,lowerMeanings,costdiff)")
+
+# listener graph 
+graph_listener <- function(data) {
+  
+  data$prob <- as.numeric(data$prob)
+  data$support <-  factor(data$support)
+  #  labels = c(expression(20), 
+  #             expression(21), expression(22), 
+  #             expression(23), expression(24), 
+  #             expression(25), expression(26),
+  #             expression(27), expression(28),
+  #             expression(29), expression(30))
+  
+  labels = c(20, 
+             21, 22, 
+             23, 24,
+             25, 26,
+             27, 28,
+             29, 30)
+  
+  p <- data %>%
+    #arrange(x) %>%
+    ggplot(aes(x=support,y=prob)) +
+    theme_bw() +
+    theme(text = element_text(size = base * expand / 2, face = "bold")) +
+    geom_bar(stat="identity",position = "dodge") +
+    xlab("Value") +
+    ylab("Probability") +
+    scale_x_discrete(labels = parse(text = labels))
+  
+  return(p)
+  
+}
+
+# speaker graph
+graph <- function(data) {
+  
+  data$prob <- as.numeric(data$prob)
+  data$support <-  ordered(data$support, levels = c("twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty"))
+  levels(data$support) <- c("twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty")
+  
+  p <- data %>%
+    #arrange(x) %>%
+    ggplot(aes(x=support,y=prob)) +
+    theme_bw() +
+    theme(text = element_text(size = base * expand / 2, face = "bold")) +
+    geom_bar(stat="identity",position = "dodge") +
+    xlab("Utterance") +
+    ylab("Probability") 
+  
+  return(p)
+  
+}
+
+# save the plot
+p <- graph_listener(listener_twentyfive_a1.0_b0.5_allimp_allhalos_lower_costdiff)
+p
+ggsave("1-listener-twentyfive-a1.0-b0.5-allimp-allhalos-lower-costdiff.pdf", width = 4, height = 2, units = "in")
+
+
 
 # load the main data
 d = read_csv("../../../data/01_entityType_valueScale/negated_adjectives-merged-english-attention.csv")
@@ -36,9 +109,9 @@ d = d %>%
 nrow(d)
 
 # create weighted intentions
-d = d %>% 
-  mutate(weightedResponseHonest = responseHonest / (responseHonest + responsePositive)) %>%
-  mutate(weightedResponsePositive = responsePositive / (responseHonest + responsePositive))
+d = d %>%
+  mutate(weightedResponseHonest = ifelse(responseHonest + responsePositive > 0, responseHonest / (responseHonest + responsePositive), 0)) %>%
+  mutate(weightedResponsePositive = ifelse(responseHonest + responsePositive > 0, responsePositive / (responseHonest + responsePositive), 0))
 
 # adjust responseValue to -1 ~ 1
 d = d %>% 
@@ -222,6 +295,7 @@ ggplot(agr_value, aes(x=value, y=mean, fill=value))+ #fill=negation
 
 
 # What affects relative weight of positivity? value = normal, (negation = 1)
+View(d)
 agr_positivity = d %>% 
   filter(value=="normal") %>%
   droplevels() %>%
@@ -233,7 +307,7 @@ agr_positivity = d %>%
   mutate(YMin = mean - CILow,
          YMax = mean + CIHigh, 
          negation = fct_recode(negation, "not adj" = "1", "adj" = "0"),
-         #polarity = fct_recode(polarity, "good" = "positive", "bad" = "negative")
+         polarity = fct_recode(polarity, "good" = "positive", "bad" = "negative")
   )
 
 View(agr_positivity)
@@ -242,10 +316,17 @@ ggplot(agr_positivity, aes(x=negation, y=mean, fill=negation))+
   geom_bar(stat="identity", position=dodge) +
   geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
   scale_fill_manual(values=cbPalette, name="Adjectival form") +
-  xlab("Adjectival polarity") +
-  ylab("Mean state rating") +
-  facet_grid(.~polarity)
+  xlab("Negation") +
+  ylab("Relative importance of positivity") +
+  facet_grid(polarity~targetType)
 
+ggplot(agr_positivity, aes(x=negation, y=mean, fill=negation))+
+  geom_bar(stat="identity", position=dodge) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  scale_fill_manual(values=cbPalette, name="Adjectival form") +
+  xlab("Negation") +
+  ylab("Relative importance of positivity") +
+  facet_grid(polarity~targetType)
 
 
 # negative strengthening plot
@@ -293,7 +374,29 @@ ggplot(agr_item, aes(x=polarity, y=mean, fill=negation))+
   facet_grid(targetType~item)
 
 
-# by time # TODO
+# positivity by item/////
+agr_positivity_item = d %>% 
+  filter(!(value=="flipped")) %>% 
+  group_by(polarity, negation, item, targetType) %>% 
+  summarise(mean = mean(responseState),
+            CILow = ci.low(responseState),
+            CIHigh = ci.high(responseState)) %>%
+  ungroup() %>%
+  mutate(YMin = mean - CILow,
+         YMax = mean + CIHigh, 
+         negation = fct_recode(negation, "not adj" = "1", "adj" = "0"))
+
+ggplot(agr_item, aes(x=polarity, y=mean, fill=negation))+
+  geom_bar(stat="identity", position=dodge) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  scale_fill_manual(values=cbPalette, name="Adjectival form") +
+  xlab("Adjectival polarity") +
+  ylab("Mean state rating") +
+  facet_grid(targetType~item)
+
+
+
+# by time
 
 agr_time = d %>% 
   group_by(workerid) %>%

@@ -1,0 +1,69 @@
+var states = [0,1,2,3]
+var utterances = ["mean","kind","not mean","not kind"]
+// how do I measure semantics more precisely???
+  var literalSemantics = {
+    "mean":[.99,.01,.01,.01],
+    "kind":[.01,.01,.01,.99],
+    "not mean":[.01,.99,.99,.99],
+    "not kind":[.99,.99,.99,.01]
+  }
+var meaning = function(utterance, state){
+  return flip(literalSemantics[utterance][state]);
+};
+// value function scales social utility by a parameter lambda
+var lambda = 1 // 1.25 // value taken from MAP estimate from Yoon, Tessler, et al. 2016
+// is it ok that I changed states to 0-3 instead of 1-4???
+  // lambda differs depending on situation/object of evaluation/type of adj/etc???!
+  var valueFunction = function(s){
+    return lambda * s
+  };
+var literalListener = function(utterance) {
+  Infer({model: function(){
+    var state = uniformDraw(states);
+    var m = meaning(utterance, state);
+    condition(m);
+    return state;
+  }})
+};
+// alpha = rationality of speaker
+var alpha = 1 // 10; // MAP estimate from Yoon, Tessler, et al. 2016
+// I should change phi so that it's not an argument but a function of something
+// e.g. speaker's relation etc. to the owner of valueFunction???!
+  var cost = function(utterance){
+    return utterance.split(" ").length
+  };
+var speaker1 = function(state, phi) {
+  Infer({model: function(){
+    var utterance = uniformDraw(utterances)
+    var L0_posterior = literalListener(utterance)
+    var utility = {
+      epistemic: L0_posterior.score(state),
+      social: expectation(L0_posterior, valueFunction)
+    }
+    var speakerUtility = phi * utility.epistemic +
+      (1 - phi) * utility.social
+    - cost(utterance) // * 10
+    factor(alpha * speakerUtility)
+    return utteranceㄴ
+  }})
+};
+// modification of lambda and phi -> what effect will it have on pragmaticListener???
+  var pragmaticListener = function(utterance) {
+    Infer({model: function(){
+      var state = uniformDraw(states)
+      var phi = uniformDraw(_.range(0.05, 0.95, 0.05)) // ???
+        var S1 = speaker1(state, phi)
+      observe(S1, utterance)
+      return { state, phi }
+    }})
+  }
+var listenerPosterior = pragmaticListener("not mean")
+// note in this case that visualizing the joint distribution via viz()
+// produces the wrong joint distribution. this is a bug in the viz() program.
+// we visualize the marginal distributions instead:
+  display("expected state = " +
+            expectation(marginalize(listenerPosterior, "state")))
+viz(marginalize(listenerPosterior, "state"))
+display("expected phi = " +
+          expectation(marginalize(listenerPosterior, "phi")))
+viz.density(marginalize(listenerPosterior, "phi"))
