@@ -11,6 +11,7 @@ var meaning = function(utterance, state){
   return flip(literalSemantics[utterance][state]);
 };
 // value function scales social utility by a parameter lambda
+// TODO : fit lambda to empirical value number
 var lambda = 1 // 1.25 // value taken from MAP estimate from Yoon, Tessler, et al. 2016
 // is it ok that I changed states to 0-3 instead of 1-4???
   // lambda differs depending on situation/object of evaluation/type of adj/etc???!
@@ -32,7 +33,7 @@ var alpha = 1 // 10; // MAP estimate from Yoon, Tessler, et al. 2016
   var cost = function(utterance){
     return utterance.split(" ").length
   };
-var speaker1 = function(state, phi) {
+var speaker = function(state, phi) {
   Infer({model: function(){
     var utterance = uniformDraw(utterances)
     var L0_posterior = literalListener(utterance)
@@ -44,7 +45,7 @@ var speaker1 = function(state, phi) {
       (1 - phi) * utility.social
     - cost(utterance) // * 10
     factor(alpha * speakerUtility)
-    return utteranceㄴ
+    return utterance
   }})
 };
 // modification of lambda and phi -> what effect will it have on pragmaticListener???
@@ -52,7 +53,7 @@ var speaker1 = function(state, phi) {
     Infer({model: function(){
       var state = uniformDraw(states)
       var phi = uniformDraw(_.range(0.05, 0.95, 0.05)) // ???
-        var S1 = speaker1(state, phi)
+        var S1 = speaker(state, phi)
       observe(S1, utterance)
       return { state, phi }
     }})
@@ -63,7 +64,7 @@ var listenerPosterior = pragmaticListener("not mean")
 // we visualize the marginal distributions instead:
   display("expected state = " +
             expectation(marginalize(listenerPosterior, "state")))
-viz(marginalize(listenerPosterior, "state"))
+// viz(marginalize(listenerPosterior, "state"))
 display("expected phi = " +
           expectation(marginalize(listenerPosterior, "phi")))
-viz.density(marginalize(listenerPosterior, "phi"))
+// viz.density(marginalize(listenerPosterior, "phi"))

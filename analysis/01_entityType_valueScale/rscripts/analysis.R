@@ -11,42 +11,29 @@ theme_set(theme_bw())
 cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7") 
 
 # load model 
-code <- read_file("main_model")
+model <- read_file("main_model")
 
 # make a function
 eval_webppl_main <- function(command) {
-  webppl(paste(code,command,sep="\n"))
+  webppl(paste(model,command,sep="\n"))
 }
 
-# running a listener/speaker model (arguments defined as in main_model)
-listener_twentyfive_a1.0_b0.5_allimp_allhalos_lower_costdiff <- eval_webppl_main("pragmaticListener('twenty-five',1.0,0.5,allimp,allhalos,lowerMeanings,costdiff)")
-
 # listener graph 
-graph_listener <- function(data) {
+# TODO : add phi
+graph_listener_state <- function(d) {
+  d$prob <- as.numeric(d$prob)
+  d$state <-  factor(d$state)
+  labels = c(0, 1, 2, 3)
   
-  data$prob <- as.numeric(data$prob)
-  data$support <-  factor(data$support)
-  #  labels = c(expression(20), 
-  #             expression(21), expression(22), 
-  #             expression(23), expression(24), 
-  #             expression(25), expression(26),
-  #             expression(27), expression(28),
-  #             expression(29), expression(30))
+  dodge = position_dodge(.9)
   
-  labels = c(20, 
-             21, 22, 
-             23, 24,
-             25, 26,
-             27, 28,
-             29, 30)
-  
-  p <- data %>%
+  p <- d %>%
     #arrange(x) %>%
-    ggplot(aes(x=support,y=prob)) +
+    ggplot(aes(x=state,y=prob)) +
     theme_bw() +
-    theme(text = element_text(size = base * expand / 2, face = "bold")) +
+    # theme(text = element_text(size = base * expand / 2, face = "bold")) +
     geom_bar(stat="identity",position = "dodge") +
-    xlab("Value") +
+    xlab("State") +
     ylab("Probability") +
     scale_x_discrete(labels = parse(text = labels))
   
@@ -54,18 +41,39 @@ graph_listener <- function(data) {
   
 }
 
-# speaker graph
-graph <- function(data) {
+graph_listener_phi <- function(d) {
+  d$prob <- as.numeric(d$prob)
+  d$phi <-  factor(d$phi)
+  # labels = c(0, 1, 2, 3)
   
+  dodge = position_dodge(.9)
+  
+  p <- d %>%
+    #arrange(x) %>%
+    ggplot(aes(x=phi,y=prob)) +
+    theme_bw() +
+    # theme(text = element_text(size = base * expand / 2, face = "bold")) +
+    geom_bar(stat="identity",position = "dodge") +
+    xlab("State") +
+    ylab("Probability") # +
+  # scale_x_discrete(labels = parse(text = labels))
+  
+  return(p)
+  
+}
+
+# speaker graph
+# TODO : where does support come from?
+graph_speaker <- function(data) {
   data$prob <- as.numeric(data$prob)
-  data$support <-  ordered(data$support, levels = c("twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty"))
-  levels(data$support) <- c("twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty")
+  data$support <-  factor(data$support, levels = c("mean", "not mean", "not kind", "kind"))
+#  levels(data$support) <- c("mean", "not mean", "not kind", "kind")
   
   p <- data %>%
     #arrange(x) %>%
     ggplot(aes(x=support,y=prob)) +
     theme_bw() +
-    theme(text = element_text(size = base * expand / 2, face = "bold")) +
+    # theme(text = element_text(size = base * expand / 2, face = "bold")) +
     geom_bar(stat="identity",position = "dodge") +
     xlab("Utterance") +
     ylab("Probability") 
@@ -74,29 +82,39 @@ graph <- function(data) {
   
 }
 
+# running a listener/speaker model (arguments defined as in main_model)
+# listener <- eval_webppl_main("pragmaticListener('twenty-five',1.0,0.5,allimp,allhalos,lowerMeanings,costdiff)")
+listener <- eval_webppl_main("pragmaticListener('not kind')")
+listener
+
+speaker <- eval_webppl_main("speaker(0, 0)")
+speaker
+# TODO : why does it give expected state & phi?
+
 # save the plot
-p <- graph_listener(listener_twentyfive_a1.0_b0.5_allimp_allhalos_lower_costdiff)
+p <- graph_listener_state(listener)
 p
 ggsave("1-listener-twentyfive-a1.0-b0.5-allimp-allhalos-lower-costdiff.pdf", width = 4, height = 2, units = "in")
 
+q <- graph_listener_phi(listener)
+q
 
+
+r <- graph_speaker(speaker)
+r
 
 # load the main data
 d = read_csv("../../../data/01_entityType_valueScale/negated_adjectives-merged-english-attention.csv")
 nrow(d)
 
-# load information about contextual features and merge into dataset
-# context = read_csv("../../../data/01_implicature_strength/context.csv")
-# d = d %>%
-#   left_join(context,by=c("id"))
-
-# limit dataset to only target trials
+# exclude practice items
 d = d %>% 
   filter(!stimulusType %in% c("example1","example2")) %>% 
   droplevels()
 nrow(d)
 
 # exclude control items
+# TODO : control responses need to be used too - where?
 d = d %>% 
   filter(!stimulusType == "control") %>% 
   droplevels()
@@ -116,7 +134,6 @@ d = d %>%
 # adjust responseValue to -1 ~ 1
 d = d %>% 
   mutate(adjustedResponseValue = (responseValue - 0.5) * 2 )
-View(d)
 
 # change independent variables into factors
 d$negation = as.factor(as.character(d$negation))
@@ -124,7 +141,7 @@ d$polarity = as.factor(as.character(d$polarity))
 d$targetType = as.factor(as.character(d$targetType))
 d$value = as.factor(as.character(d$value))
 
-# change participant & adjective into factors too??
+# TODO : change participant & adjective into factors too??
 d$workerid = as.factor(as.character(d$workerid))
 d$adjective = as.factor(as.character(d$adjective))
 
