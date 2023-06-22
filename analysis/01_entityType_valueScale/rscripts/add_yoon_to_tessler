@@ -1,0 +1,168 @@
+// helpers
+var isNegation = function(utt){
+  return (utt.split("_")[0] == "not")
+};
+var round = function(x){
+  return Math.round(x * 100) / 100
+}
+var marginalize = function(dist, key){
+  return Infer({model: function(){ sample(dist)[key] }})
+}
+/////////////////////////////////////////////////////////
+
+var utterances = [
+  "fast",
+  "not_fast",
+  "slow",
+  "not_slow"
+];
+// TODO : generalized utterances or all the utterances? cf. Tessler (happy set)
+// TODO : how to treat different sets of adjectives? e.g. fast-slow vs. big-small
+
+var speakerOptimality = 1;
+
+var cost_yes = 0;
+var cost_neg = 0;
+var uttCosts = map(function(u) {
+  return isNegation(u) ? Math.exp(-cost_neg) : Math.exp(-cost_yes)
+}, utterances)
+// TODO : what cost function would be reasonable?
+// cf. Yoon's cost function:
+// var cost = function(utterance){
+//     return utterance.split("_").length
+// Tessler: cost affects utterance prior
+// Yoon: cost affects speaker utility
+
+var utterancePrior = Infer({model: function(){
+  return utterances[discrete(uttCosts)] // utt prior depends on cost
+}});
+
+var meaning = function(words, state, thresholds){
+  return words == "fast" ? state > thresholds.fast :
+  words == "not_fast" ? !(state > thresholds.fast) :
+  words == "slow" ? state < thresholds.slow : // TODO : if very slow = 1, change the direction of sign
+  words == "not_slow" ? !(state < thresholds.slow) : // same
+  true // TODO : raise exception instead of returning True?
+  // error('words not in utterances')
+};
+// TODO : again, how to treat different sets of adjectives? e.g. fast & slow share one scale while fast & big don't
+
+var lb = 0, ub = 1, diff = 0.05;
+var bins = _.range(lb, ub + diff, diff); // lb <= range < (ub+diff)
+// TODO : what exactly is the role of bins and how should it be set up?
+// state prior is created from bins
+// cf. 
+// var bins = [0.01].concat(_.range(lb, ub + diff, diff)
+// var bins = [0.01].concat(_.range(diff,1, diff)).concat([0.99])
+
+// Distributions I can use
+
+var DiscreteGaussian = function(mu, sigma){
+  Infer({model: function(){
+    categorical({
+      vs:bins,
+      ps:map(function(x){Math.exp(Gaussian({mu, sigma}).score(x))}, bins)
+    })
+  }})
+}
+
+// dist of states
+var DiscreteBeta = function(a, b){
+  Infer({model: function(){
+    categorical({
+      vs:bins,
+      ps:map(function(x){
+        var xi = x >= 1 ? 0.99 : x == 0 ? 0.01 : x
+        Math.exp(Beta({a, b}).score(xi))
+      }, bins)
+    })
+  }})
+}
+
+var UnitUniformPrior = Infer({model: function(){
+  return uniformDraw(bins)
+}})
+
+// RSA models
+
+var listener0 = cache(function(utterance, thresholds) {
+  Infer({model: function(){
+    var state = sample(DiscreteBeta(1, 1)); // mean = 0.5
+    // display(utterance)
+    // display(state)
+    // display(JSON.stringify(thresholds))
+    // var state = sample(DiscreteGaussian(0, 0.5));
+    // var state = uniformDraw( _.range(lb, ub + diff, diff));
+    var m = meaning(utterance, state, thresholds);
+    condition(m);
+    return state;
+  }})
+}, 10000);
+
+var valueFunction = function(lambda){
+    return function(s) {
+      return lambda * s
+    }
+  };
+
+var speaker1 = cache(function(state, thresholds, phi, lambda) {
+  Infer({model: function(){
+    var utterance = sample(utterancePrior);
+    var L0_posterior = listener0(utterance, thresholds);
+    var utility = {
+        epistemic: L0_posterior.score(state),
+        social: expectation(L0_posterior, valueFunction(lambda))
+      }
+      var speakerUtility = phi * utility.epistemic +
+        (1 - phi) * utility.social // - cost(utterance) 
+    factor(speakerOptimality*speakerUtility);
+    return utterance;
+  }})
+}, 10000);
+
+// bins: lb = 0; ub = 1
+// threshold must not be ub for 'fast'; not be lb for 'slow' (if very slow = 0)
+var listener1 = cache(function(utterance) {
+  Infer({model: function(){
+    var thresholds = {
+      fast: uniformDraw(_.range(lb, ub, diff)), // threshold for fast: 0 <= range < 1
+      slow: uniformDraw(_.range(lb+diff, ub+diff, diff)) // threshold for slow: 0 < range <= 1
+      // TODO : they share 1 scale, so threshold for slow must be lower than threshold for fast
+    }
+
+    var phi = uniformDraw(_.range(0.05, 1, 0.05)) // 1 is not included
+
+    var lambda = uniformDraw(_.range(-1, 1, 0.05)) // TODO: How to set prior for lambda (bias twd positive num)
+
+    var state = sample(DiscreteBeta(1, 1));
+    // var state = uniformDraw( _.range(lb, ub + diff, diff));
+    // var state = sample(DiscreteGaussian(0, 0.5));
+
+    var S1_posterior = speaker1(state, thresholds, phi, lambda)
+    observe(S1_posterior, utterance)
+    // TODO : how exactly do `observe(S1, utterance)` and `factor(S1.score(utterance))` differ?
+    return { state, phi, lambda } // threshold has no empirical data
+  }})
+}, 10000);
+
+// gives mean of dist of pragmatic listener
+map(function(u){
+  var L1_posterior = listener1(u)
+  display(u + " = " + expectation(L1_posterior))
+  //   viz(L1_posterior)
+}, utterances)
+
+// TODO : fit model (state, phi, lambda) to empirical data 
+
+// TODO : phi, lambda is not estimated only based on utterance,
+// but are given by context that L1 knows
+
+listener1("slow")
+
+// fitting model to empirical data (from Penny)
+// TODO : modify to match my model & data
+mapData({data: df}, function(d){
+    // loop through the df dataframe. d: a row of the long-form empirical data
+    var listenerDist = listenerDistLists[d.item][d.utterance]
+    observe(listenerDist, d.speaker_response_bin)
+  })
