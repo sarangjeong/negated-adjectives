@@ -1,0 +1,107 @@
+// helper function for visualization
+var marginalize = function(dist, key){
+  return Infer({model: function(){ sample(dist)[key] }})
+};
+
+// pre-defined states and utterances
+var lb = 0, ub = 1, diff = 0.05;
+var states = _.range(lb, ub + diff, diff); 
+var utterances = [
+  "fast", "not_fast", "slow", "not_slow"
+];
+
+// literal listener
+var meaning = function(words, state, thresholds){
+  return words == "fast" ? state > thresholds.fast :
+  words == "not_fast" ? !(state > thresholds.fast) :
+  words == "slow" ? state < thresholds.slow : 
+  words == "not_slow" ? !(state < thresholds.slow) : 
+  error('words not in utterances')
+};
+var listener0 = cache(function(utterance, thresholds) {
+  Infer({model: function(){
+    var state = uniformDraw(states);
+    var m = meaning(utterance, state, thresholds);
+    condition(m);
+    return state;
+  }})
+}, 10000);
+
+// pragmatic speaker
+var alpha = 1;
+var cost_yes = 1; 
+var cost_not = 2; 
+// var cost_yes = 0; // polarity hypothesis' prediction
+// var cost_not = 3; // polarity hypothesis' prediction
+var isNegation = function(utt){
+  return (utt.split("_")[0] == "not")
+};
+var cost_positive = 1;
+var cost_negative = 1.5;
+// var cost_positive = 1; // polarity hypothesis' prediction
+// var cost_negative = 6; // polarity hypothesis' prediction
+var isNegative = function(utt){
+  return (utt.split("_").slice(-1)[0] == "slow" )
+}
+var cost = function(u) {
+  var negation_cost = isNegation(u) ? cost_not : cost_yes;
+  var polarity_cost = isNegative(u) ? cost_negative : cost_positive;
+  return negation_cost + polarity_cost
+}
+var valueFunction = function(lambda){
+    return function(s) {
+      return lambda * s
+    }
+  };
+var speaker1 = cache(function(state, thresholds, phi, lambda) {
+  Infer({model: function(){
+    var utterance = uniformDraw(utterances)
+    var L0_posterior = listener0(utterance, thresholds);
+    var utility = {
+        epistemic: L0_posterior.score(state),
+        social: expectation(L0_posterior, valueFunction(lambda))
+      } 
+    var speakerUtility = phi * utility.epistemic
+    + (1 - phi) * utility.social 
+    - cost(utterance);
+    factor(alpha*speakerUtility);
+    return utterance;
+  }})
+}, 10000);
+
+// pragmatic listener
+var listener1 = cache(function(utterance, valuescale) {
+  Infer({model: function(){
+    var thresholds = {
+      fast: uniformDraw(_.range(lb, ub, diff)), 
+      slow: uniformDraw(_.range(lb+diff, ub+diff, diff)) 
+    }
+    condition(thresholds.fast >= thresholds.slow)
+    
+//     var phi = 1 // only informativeness matters
+    var phi = 0.5 // both matter
+//     var phi = 0.001 // only face matters
+
+    var lambda = (valuescale===1) ? 5 : -5 // bigger risk of face threat
+//     var lambda = (valuescale===1) ? 2 : -2 // intermediate risk of face threat
+//     var lambda = (valuescale===1) ? 0.1 : -0.1 // almost no risk of face threat
+
+    var state = uniformDraw(states);
+    var S1_posterior = speaker1(state, thresholds, phi, lambda)
+    observe(S1_posterior, utterance)
+    return { state, phi, lambda, thresholds } // phi -- arg or output?? same question w lambda
+  }})
+}, 10000);
+
+display("SCHEMATIC MODEL PREDICTIONS including POLARITY")
+display("PRAGMATIC LISTENER")
+map(function(u){
+  var vs = 1; // default condition
+//   var vs = -1; // reverse condition
+  var L1_posterior = listener1(u, vs);
+  display("value scale = " + ((vs==1) ? "default" : "reverse"))
+  display("phi (imformative utility) = " + expectation(marginalize(L1_posterior, "phi")))
+  display("lambda (value function) = " + expectation(marginalize(L1_posterior, "lambda")))
+  display("expected state of " + u + " = " + expectation(marginalize(L1_posterior, "state")))
+  viz(marginalize(L1_posterior, "state"))  
+}, utterances)
