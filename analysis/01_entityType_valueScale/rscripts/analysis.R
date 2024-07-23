@@ -2,12 +2,17 @@ library(tidyverse)
 library(lme4)
 library(lmerTest)
 library(jsonlite)
-library(rwebppl)
-library(emmeans)
-library(ggplot2)
+# install.packages("rwebppl")
+library(rwebppl) # Not work in Windows
+# install.packages("emmeans")
+library(emmeans) # Not work in Windows?
 library(grid)
 # install.packages("xtable")
 library(xtable)
+
+library(ggplot2)
+# install.packages("ggh4x")
+library(ggh4x)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("helpers.R")
 theme_set(theme_bw())
@@ -18,7 +23,7 @@ cbPalette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00",
 # data cleaning #
 #################
 
-contrasts(d$negation)
+# contrasts(d$negation)
 # 고민
 # no negation = reference level
 # negation = test level
@@ -266,7 +271,7 @@ cor.test(d_default_negated_positive$responseHonest, d_default_negated_positive$r
 # BOOTSTRAPPING #
 #################
 
-view(d)
+# view(d)
 nrow(d[d$polarity=="positive" & d$negation==0 & d$value=="default",])
 nrow(d[d$polarity=="positive" & d$negation==1 & d$value=="default",])
 nrow(d[d$polarity=="negative" & d$negation==0 & d$value=="default",])
@@ -336,6 +341,9 @@ for (val in c("default", "reverse")) {
 }
 
 # plot
+
+dodge = position_dodge(.9)
+
 # basic NS DIFFERENCE with CI (for CAMP)
 ns_diff = bootstrap_results %>%
   filter(value=="default") %>%
@@ -378,22 +386,25 @@ ns_value_diff = bootstrap_results %>%
 ggplot(ns_value_diff, aes(x=polarity, y=mean, fill=value)) +
   geom_bar(stat="identity", position=dodge) +
   # geom_text(aes(label=c("", "slow - not slow", "fast - not fast", "")), vjust=-1, size=3) + # WHY WRONG ORDER???
-  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2, size=1.5) + 
   scale_fill_manual(values=c(cbPalette[1], cbPalette[5]), name="Value scale") +
   # labs(caption = "(Value context = default)") +
   xlab("Adjectival polarity") +
   ylab("Negative strengthening") +
   scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8), limits = c(0,0.8)) +
-  theme(axis.text = element_text(size=30),
-        axis.title = element_text(size=32),
-        legend.text = element_text(size=22),
-        legend.title = element_text(size=24),
-        legend.key.size = unit(15, "mm"),
-        legend.box.background = element_rect(color = "black"),
-        # legend.box.margin = margin(t=1, l=1),
-        legend.position = c(0.85, 0.85))
+  theme_bw(base_size = 40) +
+  theme(
+        axis.text.y = element_text(size=50),
+        axis.text.x = element_text(size=46),
+        axis.title = element_text(size=52),
+        legend.text = element_text(size=30),
+        legend.title = element_text(size=32),
+        legend.key.size = unit(10, "mm"),
+        legend.background = element_rect(colour = 'black', size = 1),
+        legend.position = c(0.79, 0.89)
+        )
+ggsave(file="../graphs/ns-value-diff-CI-forCogSciPoster.png",width=8.19,height=9.24)
 ggsave(file="../graphs/ns-value-diff-CI.png",width=4,height=3.2)
-ggsave(file="../graphs/ns-value-diff-CI-forCogSciPoster.png",width=8.6,height=9.6)
 
 # NS DIFFERENCE by HUMANNESS with CI (for CAMP)
 boot_agr_ns_targetType_diff <- bootstrap_results %>% 
@@ -457,16 +468,37 @@ boot_agr_adj_value_diff <- bootstrap_results %>%
          YMax = mean + CIHigh,
          polarity = fct_relevel(polarity, "positive", "negative"),
          adjectivePair = fct_recode(adjectivePair, "good/bad" = "good-bad", "fast/slow" = "fast-slow", "big/small" = "big-small", "long/short" = "long-short"))
+
 ggplot(boot_agr_adj_value_diff, aes(x=adjectivePair, y=mean, fill=polarity))+ 
   geom_bar(stat="identity", position=dodge) +
-  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2, linewidth=1) +
   scale_fill_manual(values=c(cbPalette[2], cbPalette[6]), name="Polarity") + # c("pink2", "skyblue2")
-  xlab("Adjective") +
+  xlab(NULL) +
   ylab("Negative strengthening") +
   # labs(caption = "(Value scale = default)") +
-  scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8), limits=c(0,0.8)) +
+  scale_y_continuous(breaks = c(0, 0.5), limits=c(0,0.8)) +
   # theme(legend.position = "bottom", legend.margin=margin(t = 0, unit='cm')) +
-  facet_grid(value~.)
+  facet_grid2(value~. , #scales="free_y", space="free_y",
+             strip = strip_themed(
+               background_y = list(element_rect(fill = cbPalette[1]),
+                                   element_rect(fill = cbPalette[5])))
+             ) +
+  theme_bw(base_size = 25) +
+  theme(
+    # axis.text = element_text(size=20),
+    axis.text.y = element_text(size=20),
+    axis.text.x = element_text(size=17),
+    axis.title = element_text(size=22),
+    legend.text = element_text(size=20),
+    legend.title = element_text(size=22),
+    # legend.key.size = unit(10, "mm"),
+    # legend.background = element_rect(colour = 'black', size = 1),
+    legend.position = "none",
+    # axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)
+  )
+
+ggsave(file="../graphs/ns-adj-value-diff-CI-forCogSciPoster.png",width=6.3,height=4.66)
+
 ggsave(file="../graphs/ns-adj-value-diff-CI.png",width=4.5,height=4)
 
 
@@ -952,7 +984,10 @@ ggplot(agr_rel_positivity_value, aes(x=polarity, y=mean, fill=negation))+
   scale_fill_manual(values=cbPalette[4:3], name="Adjectival form") +
   xlab("Adjectival polarity") +
   ylab("Relative importance of positivity") +
-  facet_grid(.~value)
+  facet_grid(.~value) 
+
+ggsave(file="../graphs/rel-positivity-by-value.png",width=7.5,height=6)
+
 ggsave(file="../graphs/rel-positivity-by-value.png",width=6,height=4)
 # RESULT: a bit more asymmetry... 
 # in default, affirmative negative adj is the lowest; in reverse, affirmative positive adj is the lowest (as expected!)
@@ -974,13 +1009,31 @@ agr_rel_honesty_value$mean
 view(agr_rel_honesty_value)
 ggplot(agr_rel_honesty_value, aes(x=polarity, y=mean, fill=negation))+
   geom_bar(stat="identity", position=dodge) +
-  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
+  geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2, linewidth=1.5) +
   scale_fill_manual(values=cbPalette[4:3], name="Adjectival form") +
   xlab("Adjectival polarity") +
-  ylab("Relative importance of honesty (vs. positivity)") +
+  ylab("Relative importance of \n honesty (vs. positivity)") +
   # theme(legend.position = "none") +
-  scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8), limits=c(0,0.8)) +
-  facet_grid(.~value)
+  scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6), limits=c(0,0.7)) +
+  facet_grid2(.~value,
+              strip = strip_themed(
+                background_x = list(element_rect(fill = cbPalette[1]),
+                                    element_rect(fill = cbPalette[5])))) + 
+  theme_bw(base_size = 30) +
+  theme(
+    # axis.text = element_text(size=30),
+    axis.text.y = element_text(size=26),
+    axis.text.x = element_text(size=24),
+    axis.title = element_text(size=26),
+    legend.text = element_text(size=16),
+    legend.title = element_text(size=18),
+    # legend.key.size = unit(10, "mm"),
+    legend.background = element_rect(colour = 'black', size = 1, fill = alpha("white", 0.9)),
+    legend.position = c(0.82, 0.17)
+  )
+
+ggsave(file="../graphs/rel-honesty-by-value-forCogSciPoster.png",width=7.7,height=6)
+
 # final cogsci
 ggsave(file="../graphs/rel-honesty-by-value.png",width=6,height=4)
 
@@ -1758,15 +1811,28 @@ fake_value_pred_by_face <- data.frame(polarity = rep(c("positive", "negative"), 
   mutate_if(is.character, as.factor) %>%
   mutate(polarity = fct_relevel(polarity, "positive", "negative")) 
 fake_value_pred_by_face
+
 ggplot(fake_value_pred_by_face, aes(x=polarity, y=difference, fill=value))+ 
   geom_bar(stat="identity", position=dodge) +
   # geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
   scale_fill_manual(values=c(cbPalette[1], cbPalette[5]), name="Value scale") + # c("pink2", "skyblue2")
-  xlab("Polarity of adjective") +
+  xlab("Adjectival polarity") +
   ylab("Negative strengthening") +
   scale_y_continuous(breaks = c(0, 1), limits = c(0,1)) +
-  theme(panel.grid = element_blank())
+  theme_bw(base_size = 30) +
+  theme(
+    axis.text = element_text(size=40),
+    axis.title = element_text(size=42),
+    legend.text = element_text(size=30),
+    legend.title = element_text(size=32),
+    # legend.key.size = unit(10, "mm"),
+    legend.background = element_rect(colour = 'black', size = 1),
+    legend.position = c(0.7, 0.8)
+  )
+
+ggsave(file="../graphs/fake-value-predicted-by-face-forCogSciPoster.png",width=6.66,height=7.33) 
 ggsave(file="../graphs/fake-value-predicted-by-face.png",width=4,height=3.2) 
+
 fake_value_pred_by_pol <- data.frame(polarity = rep(c("positive", "negative"), each=2),
                                       value = rep(c("default","reverse"), times=2),
                                       difference = rep(c(0.6, 0.4), each=2)) %>%
@@ -1777,10 +1843,21 @@ ggplot(fake_value_pred_by_pol, aes(x=polarity, y=difference, fill=value))+
   geom_bar(stat="identity", position=dodge) +
   # geom_errorbar(aes(ymin=YMin, ymax=YMax), position=dodge, width=.2) +
   scale_fill_manual(values=c(cbPalette[1], cbPalette[5]), name="Value scale") + # c("pink2", "skyblue2")
-  xlab("Polarity of adjective") +
+  xlab("Adjectival polarity") +
   ylab("Negative strengthening") +
   scale_y_continuous(breaks = c(0, 1), limits = c(0,1)) +
-  theme(panel.grid = element_blank())
+  theme_bw(base_size = 30) +
+  theme(
+    axis.text = element_text(size=40),
+    axis.title = element_text(size=42),
+    legend.text = element_text(size=30),
+    legend.title = element_text(size=32),
+    # legend.key.size = unit(10, "mm"),
+    legend.background = element_rect(colour = 'black', size = 1),
+    legend.position = 'none'
+  )
+ggsave(file="../graphs/fake-value-predicted-by-polarity-forCogSciPoster.png",width=6.66,height=7.33) 
+
 ggsave(file="../graphs/fake-value-predicted-by-polarity.png",width=4,height=3.2) 
 
 # predictions for entity type / humanness
